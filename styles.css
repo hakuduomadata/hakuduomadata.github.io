@@ -20,27 +20,21 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
     line-height: 1.8;
     color: var(--text-color);
     overflow-x: hidden;
 }
 
 .container {
-    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 /* 头部导航 */
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -53,46 +47,21 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
     height: 80px;
 }
 .logo {
     max-width: 200px; /* 根据实际需要调整宽度 */
 }
 .logo img {
-    max-height: 50px;
     width: 100%;
     height: auto;
     display: block;
 }
-
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-}
-
-.mobile-menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: #1a237e;
-    border-radius: 3px;
-}
-
 .nav-list {
     display: flex;
     gap: 30px;
     list-style: none;
 }
-
-.nav-item {
-    margin: 0 15px;
-}
-
 .nav-link {
     color: var(--primary-color);
     text-decoration: none;
@@ -101,11 +70,6 @@ img {
     position: relative;
     transition: var(--transition);
 }
-
-.nav-link:hover {
-    color: #1a237e;
-}
-
 .nav-link::after {
     content: '';
     position: absolute;
@@ -119,41 +83,8 @@ img {
 .nav-link:hover::after {
     width: 100%;
 }
-
-/* 移动端导航 */
-@media (max-width: 992px) {
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    
-    .nav-list {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        transform: translateY(-150%);
-        transition: transform 0.3s ease;
-        z-index: 999;
-    }
-    
-    .nav-list.active {
-        transform: translateY(0);
-    }
-    
-    .nav-item {
-        margin: 10px 0;
-    }
-}
-
-
 /* 轮播图部分 */
 .hero-section {
-    position: relative;
     height: 100vh;
     margin-top: 80px;
 }
@@ -167,7 +98,7 @@ img {
 }
 .swiper-slide img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 .slide-content {
@@ -178,10 +109,7 @@ img {
     text-align: center;
     color: var(--white);
     z-index: 2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    width: 90%;
 }
-
 .slide-content h2 {
     font-size: 3.5rem;
     margin-bottom: 20px;
@@ -195,17 +123,6 @@ img {
     transform: translateY(20px);
     animation: fadeInUp 0.8s 0.3s forwards;
 }
-
-
-
-
-
-
-
-
-
-
-
 /* 产品展示区 */
 .products-showcase {
     padding: 100px 0;
@@ -293,17 +210,7 @@ img {
     margin: 0;
 }
 
-/* 网格布局响应式 */
-.product-list-grid,
-.partners-grid,
-.exhibition-grid,
-.overseas-exhibition-grid,
-.series-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
+/* 响应式布局 */
 @media (max-width: 1200px) {
     .product-list-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -311,36 +218,19 @@ img {
 }
 
 @media (max-width: 992px) {
-    .product-list-grid,
-    .partners-grid,
-    .exhibition-grid,
-    .overseas-exhibition-grid {
+    .product-list-grid {
         grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .series-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .product-list-grid,
-    .partners-grid,
-    .exhibition-grid,
-    .overseas-exhibition-grid {
+    .product-list-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .series-grid {
-        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
-    .product-list-grid,
-    .partners-grid,
-    .exhibition-grid,
-    .overseas-exhibition-grid {
+    .product-list-grid {
         grid-template-columns: 1fr;
     }
     
@@ -398,18 +288,16 @@ img {
 }
 /* 联系部分样式 */
 .contact-wrapper {
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
 }
 .contact-info-container {
     background: linear-gradient(135deg, #ffffff, #f0f0f0);
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.form-container,
-.contact-info-container {
-    flex: 1;
 }
 .contact-info-container h2 {
     text-align: center;
@@ -473,25 +361,11 @@ img {
     color: #666;
 }
 /* 响应式调整 */
-@media (max-width: 992px) {
-    .contact-wrapper {
-        flex-direction: column;
-    }
-    
-    .form-container,
-    .contact-info-container {
-        width: 100%;
-    }
-}
 @media (max-width: 768px) {
     .contact-wrapper {
         grid-template-columns: 1fr;
     }
 }
-
-
-
-
 /* 页脚 */
 .site-footer {
     background: var(--primary-color);
@@ -964,8 +838,6 @@ img {
 .company-about-section {
     padding: 60px 0;
     background: #fff;
-    display: flex;
-    gap: 30px;
 }
 
 .company-about-wrapper {
@@ -1022,11 +894,6 @@ img {
     background: #fff;  /* 添加整体背景色 */
     border-radius: 8px;  /* 为整体添加圆角 */
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);  /* 为整体添加阴影 */
-}
-
-.company-video,
-.about-us {
-    flex: 1;
 }
 
 .about-title {
@@ -1092,16 +959,10 @@ img {
 @media (max-width: 992px) {
     .company-about-wrapper {
         grid-template-columns: 1fr;
-        flex-direction: column;
     }
     
     .about-us {
         border-radius: 0 0 8px 8px;  /* 在小屏幕上调整圆角位置 */
-    }
-
-    .company-video,
-    .about-us {
-        width: 100%;
     }
     
     .video-container {
@@ -1152,7 +1013,6 @@ img {
     align-items: center;
     gap: 40px;
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .service-content {
@@ -1285,15 +1145,6 @@ img {
     .strength-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .service-item {
-        flex-direction: column;
-    }
-
-    .service-content,
-    .service-images {
-        width: 100%;
-    }
     
     .service-images {
         grid-template-columns: 1fr;
@@ -1310,8 +1161,9 @@ img {
     .service-content h4 {
         font-size: 20px;
     }
-
 }
+
+
 
 
 
@@ -1737,3 +1589,4 @@ img {
         padding: 20px;
     }
 }
+

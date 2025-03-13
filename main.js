@@ -61,3 +61,24 @@ const certificatesSwiper = new Swiper('.certificates-swiper', {
         },
     }
 });
+
+
+
+// 添加以下代码到现有的JavaScript文件中
+const featureSwiper = new Swiper('.feature-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    }
+});

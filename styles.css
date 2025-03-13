@@ -726,110 +726,81 @@ body {
     }
 }
 
-/* VR展示功能块样式 */
-.vr-showcase-section {
-    padding: 40px 0;
-    background: #f8f9fa;
+/* 特性展示轮播图样式 */
+.feature-showcase-section {
+    padding: 60px 0;
+    background-color: #fff;
 }
 
-.vr-showcase-wrapper {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.vr-main-display {
-    position: relative;
+.feature-showcase-wrapper {
     width: 100%;
-    height: 500px;
-    margin-bottom: 20px;
+    max-width: 1200px;
+    max-height: 465px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 8px;
     overflow: hidden;
 }
 
-#vr-frame {
+.feature-swiper {
     width: 100%;
     height: 100%;
-    border: none;
 }
 
-.vr-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+.feature-swiper .swiper-slide {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.vr-info {
-    display: flex;
-    align-items: center;
-    color: #fff;
-}
-
-.vr-info img {
-    width: 18px;
-    height: 16px;
-    margin-right: 8px;
-}
-
-.vr-controls {
-    display: flex;
-    gap: 10px;
-}
-
-.fullscreen-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.fullscreen-btn img {
-    width: 24px;
-    height: 24px;
-}
-
-.vr-thumbnails {
-    display: flex;
-    gap: 15px;
     justify-content: center;
+    align-items: center;
 }
 
-.thumbnail {
-    width: 120px;
-    height: 80px;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.thumbnail.active {
-    border-color: #3498db;
-}
-
-.thumbnail img {
+.feature-swiper .swiper-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
+}
+
+.feature-swiper .swiper-button-next,
+.feature-swiper .swiper-button-prev {
+    color: #fff;
+    background: rgba(0,0,0,0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-swiper .swiper-button-next:after,
+.feature-swiper .swiper-button-prev:after {
+    font-size: 18px;
+}
+
+.feature-swiper .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.7;
+}
+
+.feature-swiper .swiper-pagination-bullet-active {
+    background: #1a237e;
+    opacity: 1;
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-    .vr-main-display {
-        height: 300px;
+    .feature-showcase-section {
+        padding: 30px 0;
     }
     
-    .thumbnail {
-        width: 80px;
-        height: 60px;
+    .feature-swiper .swiper-button-next,
+    .feature-swiper .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .feature-swiper .swiper-button-next:after,
+    .feature-swiper .swiper-button-prev:after {
+        font-size: 14px;
     }
 }
 

@@ -735,7 +735,7 @@ body {
 .feature-showcase-wrapper {
     width: 100%;
     max-width: 1200px;
-    max-height: 465px;
+    
     margin: 0 auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 8px;

@@ -1,1563 +1,880 @@
-/* 全局样式 */
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-color: #2c3e50;
-    --light-gray: #ecf0f1;
-    --white: #ffffff;
-    --transition: all 0.3s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-    line-height: 1.8;
-    color: var(--text-color);
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 头部导航 */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
-}
-.header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-}
-.logo {
-    max-width: 200px; /* 根据实际需要调整宽度 */
-}
-.logo img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.nav-list {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-.nav-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 0;
-    position: relative;
-    transition: var(--transition);
-}
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--secondary-color);
-    transition: var(--transition);
-}
-.nav-link:hover::after {
-    width: 100%;
-}
-/* 轮播图部分 */
-.hero-section {
-    height: 100vh;
-    margin-top: 80px;
-}
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-.swiper-slide {
-    position: relative;
-    overflow: hidden;
-}
-.swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.slide-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--white);
-    z-index: 2;
-}
-.slide-content h2 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s forwards;
-}
-.slide-content p {
-    font-size: 1.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s 0.3s forwards;
-}
-/* 产品展示区 */
-.products-showcase {
-    padding: 100px 0;
-    background: var(--light-gray);
-}
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
-}
-.product-card {
-    background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
-}
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-
-/* 产品列表展示区域样式 */
-.product-list-section {
-    padding: 40px 0;
-    background: #fff;
-}
-
-.product-list-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    margin-left: 45px;
-    margin-right: 45px
-}
-
-.product-item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.product-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-5px);
-}
-
-.product-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.product-details {
-    padding: 12px;
-}
-
-.product-details h3 {
-    font-size: 14px;
-    color: #333;
-    margin: 0 0 8px;
-    line-height: 1.4;
-}
-
-.product-details .price {
-    color: #e74c3c;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0 0 5px;
-}
-
-.product-details .moq {
-    color: #666;
-    font-size: 12px;
-    margin: 0;
-}
-
-/* 响应式布局 */
-@media (max-width: 1200px) {
-    .product-list-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .product-list-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .product-list-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .product-list-grid {
-        grid-template-columns: 1fr;
-    }
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="专业玻璃制品定制解决方案提供商">
+    <title>玻璃制品定制 - 专业玻璃制品解决方案</title>
     
-    .product-item img {
-        height: 160px;
-    }
-}
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="container header-wrapper">
+            <div class="logo">
+                <a href="#home">
+                    <img src="https://cdn.cloudbf.com/files/204/img/2024/04/15/202404151633000129708.png" alt="Shenzhen Ruixin Glassware Co., ltd" title="Shenzhen Ruixin Glassware Co., ltd">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
+                    <li class="nav-item"><a href="#products" class="nav-link">产品中心</a></li>
+                    <li class="nav-item"><a href="#vr" class="nav-link">VR展厅</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">关于我们</a></li>
+                    <li class="nav-item"><a href="#custom" class="nav-link">设计定制</a></li>
+                    <li class="nav-item"><a href="#exhibition" class="nav-link">展览会</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-
-
-
-/* 联系表单 */
-.contact-section {
-    padding: 100px 0;
-    background: var(--white);
-}
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-}
-.contact-form {
-    background: var(--light-gray);
-    padding: 40px;
-    border-radius: 10px;
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: var(--transition);
-}
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--secondary-color);
-    outline: none;
-}
-.submit-btn {
-    background: var(--secondary-color);
-    color: var(--white);
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-.submit-btn:hover {
-    background: var(--primary-color);
-}
-/* 联系部分样式 */
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 30px;
-}
-.contact-info-container {
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.contact-info-container h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #333;
-}
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-}
-.contact-item {
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: center;
-}
-.contact-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.contact-label {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #0073aa;
-    margin: 10px 0;
-}
-.contact-link {
-    font-size: 16px;
-    color: #333;
-    text-decoration: none;
-    word-break: break-all;
-    display: block;
-}
-.contact-person {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-.contact-avatar {
-    flex: 0 0 100px;
-    margin-right: 15px;
-}
-.contact-avatar img {
-    width: 100%;
-    border-radius: 50%;
-    display: block;
-}
-.contact-person-details h3 {
-    margin: 0;
-    font-size: 20px;
-    color: #333;
-}
-.contact-person-details p {
-    margin: 5px 0 0;
-    font-size: 16px;
-    color: #666;
-}
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-}
-/* 页脚 */
-.site-footer {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 80px 0 30px;
-}
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 50px;
-}
-.footer-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-.footer-links ul {
-    list-style: none;
-}
-.footer-links a {
-    color: var(--white);
-    text-decoration: none;
-    transition: var(--transition);
-}
-.footer-links a:hover {
-    color: var(--secondary-color);
-}
-.copyright {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-/* 动画效果 */
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .header-wrapper {
-        height: 60px;
-    }
-.nav-list {
-        display: none;
-    }
-.slide-content h2 {
-        font-size: 2rem;
-    }
-.slide-content p {
-        font-size: 1rem;
-    }
-.contact-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* 语言切换器样式 */
-.language-switcher {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.language-options {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.lang-btn {
-    padding: 8px 20px;
-    border: 2px solid #e0e0e0;
-    background: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #666;
-    transition: all 0.3s ease;
-}
-
-.lang-btn:hover {
-    border-color: #3498db;
-    color: #3498db;
-}
-
-.lang-btn.active {
-    background: #3498db;
-    border-color: #3498db;
-    color: white;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .language-options {
-        flex-wrap: wrap;
-    }
+    <main>
+        <!-- 轮播图部分 -->
+        <section class="hero-section">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111137090141817.jpg" alt="玻璃制品展示1">
+                        <div class="slide-content">
+                            <h2>创新玻璃解决方案</h2>
+                            <p>为您打造独特的玻璃艺术品</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/12/31/IMG_6347_YyQB6u.jpg.webp" alt="玻璃制品展示2">
+                        <div class="slide-content">
+                            <h2>精品展示</h2>
+                            <p>匠心工艺，品质之选</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/23/7_tEeJmy.jpg.webp" alt="玻璃制品展示3">
+                        <div class="slide-content">
+                            <h2>定制方案</h2>
+                            <p>专业定制，完美呈现</p>
+                        </div>
+                    </div>
+                                        <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111140370194779.jpg" alt="玻璃制品展示4">
+                        <div class="slide-content">
+                            <h2>定制方案</h2>
+                            <p>专业定制，完美呈现</p>
+                        </div>
+                    </div>
+                                        <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111148440182933.jpg" alt="玻璃制品展示5">
+                        <div class="slide-content">
+                            <h2>定制方案</h2>
+                            <p>专业定制，完美呈现</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+        
+        <!-- 语言切换部分 -->
+        <div class="language-switcher">
+            <div class="container">
+                <div class="language-options">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                    <button class="lang-btn" data-lang="es">Español</button>
+                    <button class="lang-btn" data-lang="fr">Français</button>
+                    <button class="lang-btn" data-lang="de">Deutsch</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <!-- VR展厅和产品展示部分 -->
+        <section class="vr-products-section">
+            <div class="container">
+                <div class="section-wrapper">
+                    <!-- VR展厅部分 -->
+                    <div class="vr-showroom">
+                        <h2 class="section-title">VR展厅</h2>
+                        <div class="vr-container">
+<img src="//s.alicdn.com/@sc04/kf/Hbacb19b9a9a142538590a8b4a0f13335f/202164399/Hbacb19b9a9a142538590a8b4a0f13335f.jpg_960x960.jpg?hasNWGrade=1" alt="">                            <div class="vr-overlay">
+                                <a href="#vr" class="vr-button">
+                                    <span class="vr-icon">VR</span>
+                                    进入展厅
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 产品展示部分 -->
+                    <div class="products-showcase">
+                        <h2 class="section-title">热门产品</h2>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/12/06/202412061442140185550.jpg.webp" alt="玻璃制品1">
+                                <div class="product-info">
+                                    <h3>Inlay Decor Glasses</h3>
+                                    <p>MOQ: 1000pcs</p>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/19/202409191434010181603.JPG.webp" alt="玻璃制品2">
+                                <div class="product-info">
+                                    <h3>Candle Jars</h3>
+                                    <p>MOQ: 1000pcs</p>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111203310127209.jpg" alt="玻璃制品3">
+                                <div class="product-info">
+                                    <h3>Gold Rim Glasses</h3>
+                                    <p>MOQ: 1000pcs</p>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/07/22/202407221556560128935.jpg.webp" alt="玻璃制品4">
+                                <div class="product-info">
+                                    <h3>Wine Glasses</h3>
+                                    <p>MOQ: 1000pcs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     
-    .lang-btn {
-        padding: 6px 15px;
-        font-size: 13px;
-    }
-}
-/* 轮播图样式 */
-.hero-section {
-    position: relative;
-    width: 100%;
-    height: 600px; /* 调整高度 */
-    overflow: hidden;
-}
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.slide-content {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #fff;
-    z-index: 1;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.slide-content h2 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.slide-content p {
-    font-size: 1.2em;
-}
-
-/* 导航按钮样式 */
-.swiper-button-next,
-.swiper-button-prev {
-    color: #fff;
-}
-
-/* 分页器样式 */
-.swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.6;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: 1;
-}
-/* 整体布局调整 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* VR展厅和产品展示区域样式 */
-.vr-products-section {
-    padding: 20px 0;
-    background: #f8f9fa;
-}
-
-.section-wrapper {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 20px;
-    align-items: start;
-}
-
-/* VR展厅样式 */
-.vr-showroom {
-    background: #fff;
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.vr-container {
-    position: relative;
-    height: 215px;  /* 调整VR展厅高度 */
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-
-/* 产品列表展示区域样式 */
-.product-list-section {
-    padding: 40px 0;
-    background: #fff;
-}
-
-.productShowcase-bg {
     
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.productShowcase-bg .title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-}
-
-.productShowcase-bg .action {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #666;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.productShowcase-bg .action:hover {
-    color: #3498db;
-}
-
-.next-icon-arrow-right {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-left: 8px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: transform 0.3s ease;
-}
-
-.productShowcase-bg .action:hover .next-icon-arrow-right {
-    transform: translateX(4px);
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .productShowcase-bg .title {
-        font-size: 20px;
-    }
     
-    .productShowcase-bg .action {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    .productShowcase-bg {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-}
-
-
-
-
-/* 产品展示区域样式 */
-.products-showcase {
-    background: #fff;
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-
-.product-card {
-    width: 100%;
-    max-width: 160px;  /* 减小产品卡片最大宽度 */
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.product-card img {
-    width: 100%;
-    height: 101px;  /* 减小图片高度 */
-    object-fit: cover;
-}
-
-.product-info {
-    padding: 8px;  /* 减小内边距 */
-}
-
-.product-info h3 {
-    font-size: 0.85em;  /* 调整字体大小 */
-    margin: 0 0 4px;
-    color: #333;
-}
-
-.product-info p {
-    font-size: 0.75em;
-    color: #666;
-    margin: 0;
-}
-
-/* 标题样式 */
-.section-title {
-    font-size: 1.1em;
-    color: #333;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
-}
-
-/* 响应式调整 */
-@media (max-width: 1024px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .section-wrapper {
-        grid-template-columns: 1fr;
-    }
     
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
     
-    .vr-container {
-        height: 160px;
-    }
-}
+        
+        <!-- 产品列表展示部分 -->
+        <section class="product-list-section">
 
-@media (max-width: 480px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
+            <div class="container">
+                <div class="productShowcase-bg">
+                    <div class="title">橱窗产品</div>
+                    <a href="/featureproductlist.html" class="action">
+                        View more 
+                        <i class="next-icon next-icon-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="section-title">产品列表</h2>
+                <div class="product-list-grid">
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒1">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒2">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒3">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒4">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒5">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒6">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒7">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒8">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒9">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2025/02/21/202502211100580125868.jpg.webp" alt="啤酒杯礼盒10">
+                        <div class="product-details">
+                            <h3>啤酒杯礼盒装</h3>
+                            <p class="price">$0.35-0.50</p>
+                            <p class="moq">起订量：10000件</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+
+        
+        
+        
+        
+
+<!-- 原来的VR展示功能块替换为轮播图模块 -->
+<section class="feature-showcase-section">
+    <div class="container">
+        <div class="feature-showcase-wrapper">
+            <div class="swiper feature-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/13/202503131204070101375.png" width="100%" alt="Feature Image 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/13/202503131345190161452.png" width="100%" alt="Feature Image 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/13/202503131204070101360.png" width="100%" alt="Feature Image 3">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+</section>
+            
+      
+            
+            
+            
+            
+            
+            
+            
+      
+
+        <!-- 公司视频和关于我们部分 -->
+        <section class="company-about-section">
+            <div class="container">
+                <div class="company-about-wrapper">
+                    <!-- 视频部分 -->
+                    <div class="company-video">
+                        <div class="video-container">
+                            <video controls preload="metadata" poster="https://cdn.b2b.yjzw.net/files/204/img/2025/03/07/202503072043050132918.png">
+                                <source src="https://play.video.alibaba.com/global/play/6000286576705.mp4?dft=hd" type="video/mp4">
+                                <source src="https://play.video.alibaba.com/global/play/6000286576705.mp4.webm" type="video/webm">
+                                您的浏览器不支持视频播放
+                            </video>
+                        </div>
+                    </div>
+                    <!-- About Us部分 -->
+                    <div class="about-us">
+                        <h2 class="about-title">ABOUT US</h2>
+                        <h3 class="company-name">SHENZHEN RUIXIN GLASSWARE CO.,LTD</h3>
+                        <div class="about-content">
+                            <p class="specialization">Specialized in daily Glassware since 2005</p>
+                            <div class="about-details">
+                                <p class="product-info">
+                                    <strong>Product:</strong> more than 100,000 kinds of glassware<br>
+                                    (Candle Jar, Stemware Glass, Borosilicate Glass, etc)<br>
+                                    
+                                </p>
+
+                                <p class="facility-info">
+                                    <strong>Factory:</strong> over 30,000 square meters, machine-made glass factory,<br>
+                                     post-processing factory, hand-blown glass factory<br>
+                                    <strong>Total capacity:</strong> 3 major factories have a combined monthly production<br>
+                                    capacity of up to 500,000 pcs.<br>
+                                    <strong>Staff:</strong> 320+ workers & sales team
+                                </p>
+
+                            </div>
+                            <a href="#" class="more-btn">MORE +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+           
+            
     
-    .product-card {
-        max-width: 100%;
-    }
-}
+            
+            
 
-/* 特性展示轮播图样式 */
-.feature-showcase-section {
-    padding: 60px 0;
-    background-color: #fff;
-}
 
-.feature-showcase-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    max-height: 465px;
-    margin: 0 auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
+        <!-- 研发设计和公司实力展示 -->
+        <section class="research-strength-section">
+            <div class="container">
+                <!-- 研发设计部分 -->
+                <div class="research-design">
+                    <h2 class="section-title">RESEARCH & DESIGN</h2>
+                    <p class="subtitle">Services that meet your needs</p>
+                </div>
+                
+                <div class="design-services">
+                    <div class="service-item">
+                        <div class="service-item">
+                            <div class="service-content">
+                                <h3>RUIXIN</h3>
+                                <h4>CUSTOM DESIGN SERVICE</h4>
+                                <ul class="service-list">
+                                    <li>Product Design</li>
+                                    <li>Pattern Design</li>
+                                    <li>Customized Packing</li>
+                                </ul>
+                            </div>
+                            <div class="service-images">
+                                <!-- 只使用一张图片 -->
+                                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301424170177837.jpg.webp" alt="Custom Design Service">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-.feature-swiper {
-    width: 100%;
-    height: 100%;
-}
+                <!-- 公司实力数据展示 -->
+                <div class="company-strength">
+                    <div class="strength-grid">
+                        <div class="strength-item">
+                            <div class="number" data-target="20">0<span class="plus">+</span></div>
+                            <div class="label">years</div>
+                            <div class="sublabel">Experience</div>
+                        </div>
+                        <div class="strength-item">
+                            <div class="number" data-target="50000">0<span class="plus">+</span></div>
+                            <div class="label">pieces</div>
+                            <div class="sublabel">Capacity</div>
+                        </div>
+                        <div class="strength-item">
+                            <div class="number" data-target="320">0<span class="plus">+</span></div>
+                            <div class="label">people</div>
+                            <div class="sublabel">Workers & Sales</div>
+                        </div>
+                        <div class="strength-item">
+                            <div class="number" data-target="3">0</div>
+                            <div class="label">branchs</div>
+                            <div class="sublabel">Factory</div>
+                        </div>
+                        <div class="strength-item">
+                            <div class="number" data-target="30000">0<span class="plus">+</span></div>
+                            <div class="label">m²</div>
+                            <div class="sublabel">Plant Area</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+            
+            
+            
+            
 
-.feature-swiper .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.feature-swiper .swiper-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+        <!-- 展会照片墙 -->
+        <section class="exhibition-section">
+            <div class="container">
+                <h2 class="section-title">EXHIBITION SCENE</h2>
+                <p class="subtitle">We attend Canton Fair every year since 2011</p>
+                <div class="exhibition-grid">
+                    <div class="exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301657560172977.jpg.webp" alt="Exhibition Scene 1">
+                    </div>
+                    <div class="exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301657570101833.jpg.webp" alt="Exhibition Scene 2">
+                    </div>
+                    <div class="exhibition-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111524300193252.jpg" alt="Exhibition Scene 3">
+                    </div>
+                    <div class="exhibition-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111524310145324.jpg" alt="Exhibition Scene 4">
+                    </div>
+                    <div class="exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301657530150379.jpg.webp" alt="Exhibition Scene 5">
+                    </div>
+                    <div class="exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301657510163175.jpg.webp" alt="Exhibition Scene 6">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-.feature-swiper .swiper-button-next,
-.feature-swiper .swiper-button-prev {
-    color: #fff;
-    background: rgba(0,0,0,0.3);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.feature-swiper .swiper-button-next:after,
-.feature-swiper .swiper-button-prev:after {
-    font-size: 18px;
-}
+         
+            
+       
+        
 
-.feature-swiper .swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.7;
-}
 
-.feature-swiper .swiper-pagination-bullet-active {
-    background: #1a237e;
-    opacity: 1;
-}
+        <!-- 海外展会照片墙 -->
+        <section class="overseas-exhibition-section">
+            <div class="container">
+                <h2 class="section-title">OVERSEA EXHIBITION & MARKET RESEARCH</h2>
+                <p class="subtitle">We attend oversea exhibition and do market research since 2014</p>
+                <div class="overseas-exhibition-grid">
+                    <div class="overseas-exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409300934290164713.png.webp" alt="Overseas Exhibition 1">
+                    </div>
+                    <div class="overseas-exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409300951200115599.jpg.webp" alt="Overseas Exhibition 2">
+                    </div>
+                    <div class="overseas-exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409300951200116461.jpg.webp" alt="Overseas Exhibition 3">
+                    </div>
+                    <div class="overseas-exhibition-item">
+                        <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/09/30/202409301657500134806.jpg.webp" alt="Overseas Exhibition 4">
+                    </div>
+                    <!-- 可以根据需要添加更多图片 -->
+                </div>
+            </div>
+        </section>
 
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .feature-showcase-section {
-        padding: 30px 0;
-    }
+
+        
+        
+      
+        
+        
+        
+        
+        
+
+
+        <!-- 合作伙伴展示 -->
+        <section class="partners-section">
+            <div class="container">
+                <h2 class="section-title">OUR PARTNERS</h2>
+                
+                <div class="partners-grid">
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/07/202503072159470172701.jpg" alt="Partner 1">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111534080107749.png" alt="Partner 2">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111535090158147.png" alt="Partner 3">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111536020113146.png" alt="Partner 4">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111536590186284.png" alt="Partner 5">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111538140115301.png" alt="Partner 6">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111540020104868.png" alt="Partner 7">
+                    </div>
+                    <div class="partner-item">
+                        <img src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/11/202503111542300102970.png" alt="Partner 8">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- 在 partners-section 后面添加以下代码 -->
+        <section class="certificates-section">
+            <div class="container">
+                <h2 class="section-title">Our Certificate</h2>
+                <div class="swiper certificates-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="certificate-item">
+                                <img src="//sc02.alicdn.com/kf/H6502eb46adf046258452bd92e41cbbe7D.jpg" alt="Certificate 1">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="certificate-item">
+                                <img src="//sc02.alicdn.com/kf/Hed1cf370f5234e91a9101a69244f01ace.jpg" alt="Certificate 2">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="certificate-item">
+                                <img src="//sc02.alicdn.com/kf/Hd7fcebb58c9e42ea9baac0ad86257c78h.jpg" alt="Certificate 3">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="certificate-item">
+                                <img src="//sc02.alicdn.com/kf/H1ca55295a7f44af8a2d2744604f471f3r.jpg" alt="Certificate 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                <!-- 产品 Banner -->
+        <section class="product-banner">
+            <div class="container">
+                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/04/16/19201_GtPILh.png.webp" alt="Product Banner">
+            </div>
+        </section>
+
+        <!-- 系列产品展示 -->
+        <section class="product-series">
+            <div class="container">
+                <div class="series-grid">
+                    <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                        <!-- 产品 Banner -->
+        <section class="product-banner">
+            <div class="container">
+                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/04/16/19201_GtPILh.png.webp" alt="Product Banner">
+            </div>
+        </section>
+
+        <!-- 系列产品展示 -->
+        <section class="product-series">
+            <div class="container">
+                <div class="series-grid">
+                    <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                        <!-- 产品 Banner -->
+        <section class="product-banner">
+            <div class="container">
+                <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/04/16/19201_GtPILh.png.webp" alt="Product Banner">
+            </div>
+        </section>
+
+        <!-- 系列产品展示 -->
+        <section class="product-series">
+            <div class="container">
+                <div class="series-grid">
+                    <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                                <div class="series-item">
+                        <div class="series-image">
+                            <img src="https://cdn.cloudbf.com/thumb/format/mini_xsize/files/204/img/2024/08/20/202408201356120143028.jpg.webp" alt="Product Series 1">
+                        </div>
+                        <div class="series-info">
+                            <h3>Main product</h3>
+                            <h4>Heimgebrauch OEM-Kunde Gedruckte Blume</h4>
+                            <div class="price">0,30-2,00 $</div>
+                            <div class="moq">Min. Order: 1000 Stück</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        
+        
+        
+        
+        
+        
+        
+            
+            
+            
+        
+        <!-- 联系表单 -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">联系我们</h2>
+                <div class="contact-wrapper">
+                    <!-- 表单部分 -->
+                    <div class="form-container">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="您的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="电子邮箱" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder="联系电话" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="请输入您的需求" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">提交</button>
+                        </form>
+                    </div>
+                    <!-- 联系信息部分 -->
+                    <div class="contact-info-container">
+                        <h2>Contact Information</h2>
+                        <!-- 联系人信息 -->
+                        <div class="contact-person">
+                            <div class="contact-avatar">
+                                <img alt="STEFANLIU" src="https://cdn.b2b.yjzw.net/files/204/img/2025/03/07/202503072235390192708.jpg" />
+                            </div>
+                            <div class="contact-person-details">
+                                <h3>Daisy Huang</h3>
+                                <p>Sales Manager</p>
+                            </div>
+                        </div>
+                        <!-- 联系方式网格 -->
+                        <div class="contact-grid">
+                            <div class="contact-item">
+                                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
+                                    <path d="M246.947322 452.578656c71.009264 139.553383 185.167257 253.710352 324.966233 324.719616L680.400385 668.565848c13.560854-13.560854 33.039487-17.505699 50.051953-12.081153 55.229882 18.24555 114.650203 28.108175 176.044482 28.108175 27.368324 0 49.312102 21.943778 49.312102 49.312102l0 172.591847c0 27.368324-21.943778 49.312102-49.312102 49.312102-463.040938 0-838.305741-375.264802-838.305741-838.305741 0-27.368324 22.190395-49.312102 49.312102-49.312102l172.591847 0c27.368324 0 49.312102 21.943778 49.312102 49.312102 0 61.393255 9.862625 120.8146 28.108175 176.044482 5.424546 17.012466 1.479701 36.491099-12.081153 50.051953L246.947322 452.578656z" fill="#2c2c2c"></path>
+                                </svg>
+                                <span class="contact-label">Phone number</span>
+                                <a class="contact-link" href="tel:+8675582821572-8022">+86 755-82821572-8022</a>
+                            </div>
+                            <!-- 其他联系方式项保持不变 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    .feature-swiper .swiper-button-next,
-    .feature-swiper .swiper-button-prev {
-        width: 30px;
-        height: 30px;
-    }
     
-    .feature-swiper .swiper-button-next:after,
-    .feature-swiper .swiper-button-prev:after {
-        font-size: 14px;
-    }
-}
-
-
-/* 公司视频和关于我们部分样式 */
-.company-about-section {
-    padding: 60px 0;
-    background: #fff;
-}
-
-.company-about-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: stretch; /* 修改：让两边高度一致 */
-}
-
-/* 视频部分样式 */
-.video-container {
-    width: 100%;
-    height: 100%;
-    min-height: 400px; /* 添加最小高度 */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background: #000; /* 添加背景色 */
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 修改为contain以保持视频比例 */
-    background: #000; /* 视频背景色 */
-}
-
-/* About Us部分样式 */
-.about-us {
-    padding: 40px;  /* 增加内边距 */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: #fff;  /* 添加白色背景 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);  /* 添加阴影效果 */
-    border-radius: 0 8px 8px 0;  /* 只在右侧添加圆角 */
-}
-
-.video-container {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-    border-radius: 8px 0 0 8px;  /* 只在左侧添加圆角 */
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);  /* 保持一致的阴影效果 */
-    background: #000;
-}
-
-.company-about-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;  /* 移除间隙 */
-    align-items: stretch;
-    background: #fff;  /* 添加整体背景色 */
-    border-radius: 8px;  /* 为整体添加圆角 */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);  /* 为整体添加阴影 */
-}
-
-.about-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.company-name {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-}
-
-.about-content {
-    flex: 1; /* 修改：允许内容区域伸展 */
-    color: #555;
-    line-height: 1.6;
-}
-
-.specialization {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.about-details {
-    margin-bottom: 25px;
-}
-
-.about-details p {
-    margin-bottom: 15px;
-}
-
-.about-details strong {
-    color: #333;
-}
-
-.company-slogan {
-    margin-top: 20px;
-    font-weight: 500;
-    color: #333;
-}
-
-.more-btn {
-    display: inline-block;
-    padding: 8px 20px;
-    border: 1px solid #ddd;
-    color: #666;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.more-btn:hover {
-    border-color: #3498db;
-    color: #3498db;
-}
-
-/* 响应式调整 */
-@media (max-width: 992px) {
-    .company-about-wrapper {
-        grid-template-columns: 1fr;
-    }
     
-    .about-us {
-        border-radius: 0 0 8px 8px;  /* 在小屏幕上调整圆角位置 */
-    }
-    
-    .video-container {
-        border-radius: 8px 8px 0 0;  /* 在小屏幕上调整圆角位置 */
-    }
-}
-@media (max-width: 768px) {
-    .about-title {
-        font-size: 28px;
-    }
-    
-    .company-name {
-        font-size: 16px;
-    }
-}
-
-
-
-/* 研发设计和公司实力展示样式 */
-.research-strength-section {
-    padding: 60px 0;
-    background: #f8f9fa;
-}
-
-/* 研发设计部分 */
-.research-design {
-    text-align: left;  /* 修改：左对齐 */
-    margin-bottom: 60px;
-    padding: 0 45px;   /* 新增：与产品列表对齐 */
-}
-
-.research-design .section-title {
-    font-size: 36px;
-    color: #1a237e;
-    margin-bottom: 10px;
-}
-
-.research-design .subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-.service-item {
-    display: flex;
-    flex-direction: row;  /* 修改：改为水平排列 */
-    align-items: center;
-    gap: 40px;
-    margin-top: 30px;
-}
-
-.service-content {
-    flex: 0 0 30%;  /* 修改：固定占60%宽度 */
-    padding-right: 20px;
-}
-
-.service-content h3 {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.service-content h4 {
-    font-size: 24px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.service-list {
-    list-style: none;
-    padding: 0;
-}
-
-.service-list li {
-    font-size: 18px;
-    color: #1a237e;
-    padding: 8px 0;
-    position: relative;
-    padding-left: 24px;
-}
-
-.service-list li:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #1a237e;
-}
-
-.service-images {
-    flex: 0 0 70%;  /* 修改：固定占40%宽度 */
-    height: 300px;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.service-images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.service-images img:hover {
-    transform: scale(1.05);
-}
-
-/* 公司实力数据展示 */
-.company-strength {
-    padding: 40px 0;
-    background: #fff;
-}
-
-.strength-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.strength-item {
-    padding: 20px;
-}
-
-.strength-item .number {
-    font-size: 36px;
-    font-weight: bold;
-    color: #1a237e;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.strength-item .plus {
-    font-size: 24px;
-    margin-left: 2px;
-    color: #3498db;
-}
-
-.strength-item .label {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.strength-item .sublabel {
-    font-size: 16px;
-    color: #999;
-}
-
-/* 响应式调整 */
-@media (max-width: 992px) {
-    .strength-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .service-images {
-        flex: 1;  /* 在小屏幕下恢复自适应 */
-        width: 100%;
-        height: 200px;
-    }
-
-    .service-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .service-content {
-        flex: 1;  /* 在小屏幕下恢复自适应 */
-    }
-
-   .service-list {
-        text-align: left;
-    }
-}
-
-@media (max-width: 768px) {
-    .strength-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .service-images {
-        grid-template-columns: 1fr;
-    }
-    
-    .research-design .section-title {
-        font-size: 28px;
-    }
-    
-    .service-content h3 {
-        font-size: 26px;
-    }
-    
-    .service-content h4 {
-        font-size: 20px;
-    }
-}
-
-
-
-
-
-
-/* 展会照片墙样式 */
-.exhibition-section {
-    padding: 60px 0;
-    background: #fff;
-}
-
-.exhibition-section .section-title {
-    text-align: center;
-    font-size: 36px;
-    color: #1a237e;
-    margin-bottom: 10px;
-}
-
-.exhibition-section .subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-.exhibition-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 0 45px;
-}
-
-.exhibition-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.exhibition-item:hover {
-    transform: translateY(-5px);
-}
-
-.exhibition-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-}
-
-/* 响应式调整 */
-@media (max-width: 992px) {
-    .exhibition-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .exhibition-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .exhibition-section .section-title {
-        font-size: 28px;
-    }
-    
-    .exhibition-section .subtitle {
-        font-size: 16px;
-    }
-}
-
-
-
-
-
-
-/* 海外展会照片墙样式 */
-.overseas-exhibition-section {
-    padding: 60px 0;
-    background: #f8f9fa;  /* 使用浅蓝色背景区分 */
-}
-
-.overseas-exhibition-section .section-title {
-    text-align: center;
-    font-size: 36px;
-    color: #1a237e;
-    margin-bottom: 10px;
-}
-
-.overseas-exhibition-section .subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-.overseas-exhibition-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* 改为4列布局 */
-    gap: 20px;
-    padding: 0 45px;
-}
-
-.overseas-exhibition-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.overseas-exhibition-item:hover {
-    transform: translateY(-5px);
-}
-
-.overseas-exhibition-item img {
-    width: 100%;
-    height: 200px;  /* 稍微降低高度以适应4列布局 */
-    object-fit: cover;
-    display: block;
-}
-
-/* 响应式调整 */
-@media (max-width: 1200px) {
-    .overseas-exhibition-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .overseas-exhibition-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .overseas-exhibition-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .overseas-exhibition-section .section-title {
-        font-size: 28px;
-    }
-    
-    .overseas-exhibition-section .subtitle {
-        font-size: 16px;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-/* 合作伙伴展示样式 */
-.partners-section {
-    padding: 60px 0;
-    background: #fff;
-}
-
-.partners-section .section-title {
-    text-align: center;
-    font-size: 36px;
-    color: #1a237e;
-    margin-bottom: 40px;
-}
-
-.partners-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    padding: 0 45px;
-}
-
-.partner-item {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.partner-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.partner-item img {
-    width: 100%;
-    height: 80px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-}
-
-.partner-item:hover img {
-    filter: grayscale(0%);
-}
-
-/* 响应式调整 */
-@media (max-width: 1200px) {
-    .partners-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 20px;
-    }
-    
-    .partners-section .section-title {
-        font-size: 28px;
-    }
-    
-    .partner-item {
-        padding: 15px;
-    }
-}
-
-
-
-
-
-
-
-/* 产品 Banner 样式 */
-.product-banner {
-    padding: 0;  /* 移除内边距实现全屏效果 */
-    background: #f8f9fa;  /* 与系列产品背景色保持一致 */
-    margin-bottom: -60px;  /* 创造重叠效果 */
-}
-
-.product-banner img {
-    width: 100%;
-    height: 400px;  /* 固定合适的高度 */
-    object-fit: cover;
-    border-radius: 0;  /* 移除圆角实现全屏效果 */
-    box-shadow: none;  /* 移除阴影 */
-}
-
-/* 系列产品展示样式 */
-.product-series {
-    padding: 60px 0;
-    background: #f8f9fa;
-    position: relative;  /* 添加定位 */
-}
-
-.series-grid {
-    position: relative;  /* 添加定位 */
-    z-index: 1;  /* 确保内容在banner之上 */
-    margin-top: -40px;  /* 向上偏移，与banner产生重叠效果 */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 0 45px;
-}
-
-.series-item {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);  /* 增强阴影效果 */
-    transition: transform 0.3s ease;
-}
-
-.series-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.series-image {
-    position: relative;
-    padding-top: 100%; /* 1:1 宽高比 */
-    overflow: hidden;
-}
-
-.series-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.series-item:hover .series-image img {
-    transform: scale(1.05);
-}
-
-.series-info {
-    padding: 15px;
-}
-
-.series-info h3 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.series-info h4 {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.series-info .price {
-    font-size: 18px;
-    color: #1a237e;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.series-info .moq {
-    font-size: 14px;
-    color: #999;
-}
-
-/* 响应式调整 */
-@media (max-width: 1200px) {
-    .series-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .series-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .series-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-    }
-    
-    .product-banner {
-        padding: 20px 0;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* 证书展示样式 */
-.certificates-section {
-    padding: 60px 0;
-    background: #fff;
-}
-
-.certificates-section .section-title {
-    text-align: center;
-    font-size: 36px;
-    color: #1a237e;
-    margin-bottom: 40px;
-}
-
-.certificates-swiper {
-    padding: 20px 40px;
-}
-
-.certificate-item {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-
-
-.certificate-item img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 4px;
-}
-
-/* Swiper 导航按钮样式 */
-.certificates-swiper .swiper-button-next,
-.certificates-swiper .swiper-button-prev {
-    color: #1a237e;
-}
-
-.certificates-swiper .swiper-pagination-bullet-active {
-    background: #1a237e;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .certificates-section .section-title {
-        font-size: 28px;
-    }
-    
-    .certificates-swiper {
-        padding: 20px;
-    }
-}
-
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">公司名称</h3>
+                    <p>专业玻璃制品定制解决方案提供商</p>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">快速链接</h3>
+                    <ul>
+                        <li><a href="#products">产品中心</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">联系方式</h3>
+                    <ul class="contact-list">
+                        <li><i class="icon-phone"></i>电话：xxx-xxxxxxxx</li>
+                        <li><i class="icon-email"></i>邮箱：contact@example.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 公司名称. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/main.js"></script>
+    <script src="/counter.js"></script>        
+</body>
+</html>

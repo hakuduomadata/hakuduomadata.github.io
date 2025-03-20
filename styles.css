@@ -984,6 +984,7 @@ body {
     align-items: center;
     gap: 40px;
     margin-top: 30px;
+    margin-bottom: 8px;
 }
 
 .service-content {

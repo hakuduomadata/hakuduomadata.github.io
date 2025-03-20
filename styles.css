@@ -961,7 +961,7 @@ body {
 /* 研发设计部分 */
 .research-design {
     text-align: left;  /* 修改：左对齐 */
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     padding: 0 45px;   /* 新增：与产品列表对齐 */
 }
 

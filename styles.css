@@ -1161,7 +1161,7 @@ body {
 
 .exhibition-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 0 45px;
 }
@@ -1180,7 +1180,7 @@ body {
 
 .exhibition-item img {
     width: 100%;
-    height: 250px;
+    height: 170px;
     object-fit: cover;
     display: block;
 }

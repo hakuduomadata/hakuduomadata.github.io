@@ -975,7 +975,7 @@ body {
     text-align: center;
     color: #666;
     font-size: 18px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .service-item {
@@ -983,7 +983,7 @@ body {
     flex-direction: row;  /* 修改：改为水平排列 */
     align-items: center;
     gap: 40px;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 8px;
 }
 
@@ -1310,9 +1310,9 @@ body {
 
 .partners-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 30px;
-    padding: 0 45px;
+    padding: 0 15px;
 }
 
 .partner-item {
@@ -1333,9 +1333,9 @@ body {
 
 .partner-item img {
     width: 100%;
-    height: 80px;
+    height: 40px; 
     object-fit: contain;
-    filter: grayscale(100%);
+    filter: grayscale(0%);
     transition: filter 0.3s ease;
 }
 
@@ -1382,7 +1382,7 @@ body {
 .product-banner {
     padding: 0;  /* 移除内边距实现全屏效果 */
     background: #f8f9fa;  /* 与系列产品背景色保持一致 */
-    margin-bottom: -60px;  /* 创造重叠效果 */
+    margin-bottom: 1px;  /* 创造重叠效果 */
 }
 
 .product-banner img {
@@ -1395,7 +1395,8 @@ body {
 
 /* 系列产品展示样式 */
 .product-series {
-    padding: 60px 0;
+    margin-top: -20px;
+    padding: 20px 0;
     background: #f8f9fa;
     position: relative;  /* 添加定位 */
 }
@@ -1403,11 +1404,11 @@ body {
 .series-grid {
     position: relative;  /* 添加定位 */
     z-index: 1;  /* 确保内容在banner之上 */
-    margin-top: -40px;  /* 向上偏移，与banner产生重叠效果 */
+    margin-top: 1px;  /* 向上偏移，与banner产生重叠效果 */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 0 45px;
+    padding: 20px 45px;
 }
 
 .series-item {
@@ -1507,8 +1508,8 @@ body {
 
 
 
-/* 证书展示样式 */
-.certificates-section {
+/* 原证书展示样式 */
+/*.certificates-section {
     padding: 60px 0;
     background: #fff;
 }
@@ -1540,9 +1541,9 @@ body {
     object-fit: contain;
     border-radius: 4px;
 }
-
+ */
 /* Swiper 导航按钮样式 */
-.certificates-swiper .swiper-button-next,
+/*.certificates-swiper .swiper-button-next,
 .certificates-swiper .swiper-button-prev {
     color: #1a237e;
 }
@@ -1550,15 +1551,224 @@ body {
 .certificates-swiper .swiper-pagination-bullet-active {
     background: #1a237e;
 }
-
+*/
 /* 响应式调整 */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .certificates-section .section-title {
         font-size: 28px;
     }
     
     .certificates-swiper {
         padding: 20px;
+    }
+}*/
+
+
+
+
+
+
+
+
+/* 证书展示部分 - 重新设计 (按照styles2.css风格) */
+.certificates-section {
+    padding: 40px 0;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+/* 保留原有标题样式 */
+.certificates-section .section-title {
+    text-align: center;
+    font-size: 36px;
+    color: #1a237e;
+    margin-bottom: 10px;
+}
+
+.certificates-section .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* 第一部分：介绍 - 采用styles2.css风格 */
+.certificate-intro {
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.certificate-intro-text {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.certificate-intro-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.certificate-intro-image img {
+    max-width: 80%;
+    height: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-features {
+    list-style: none;
+    margin-left: 40px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.certificate-features li {
+    margin-bottom: 15px;
+    font-size: 18px;  /* 增大字体 */
+    color: #333;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    font-weight: 500;  /* 增加字重 */
+}
+
+.check-mark {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 30px;  /* 增大对勾符号 */
+    display: inline-block;
+    min-width: 22px;
+}
+
+/* 证书类别 - 采用styles2.css风格 */
+.certificate-category {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.category-title {
+    font-size: 24px;  /* 增大分类标题 */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    color: #222;
+    font-weight: 600;
+}
+
+.category-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #1a237e;
+    color: white;
+    border-radius: 20px;
+    margin-right: 15px;
+    font-size: 26px;  /* 增大字母 */
+    font-weight: bold;
+}
+
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.certificate-item {
+    background-color: white;
+    overflow: hidden;
+    
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.certificate-label {
+    text-align: center;
+    padding: 12px 10px;
+    font-weight: 600;  /* 加粗 */
+    color: #222;
+    font-size: 17px;  /* 增大标签字体 */
+    letter-spacing: 0.5px;  /* 增加字间距 */
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-features li {
+        font-size: 16px;
+    }
+    
+    .check-mark {
+        font-size: 20px;
+    }
+    
+    .certificate-badge {
+        font-size: 16px;
+    }
+    
+    .category-title {
+        font-size: 22px;
+    }
+    
+    .certificate-intro {
+        flex-direction: column;
+    }
+    
+    .certificate-intro-text,
+    .certificate-intro-image {
+        width: 100%;
+    }
+    
+    .certificate-intro-image {
+        order: -1;
+    }
+    
+    .category-title {
+        font-size: 20px;
+    }
+    
+    .category-letter {
+        width: 32px;
+        height: 32px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .certificate-features li {
+        font-size: 15px;
     }
 }
 

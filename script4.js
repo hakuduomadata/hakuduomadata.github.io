@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 创建彩带效果
     function createConfetti() {
+        // 现有代码保持不变
         confettiContainer.innerHTML = '';
         const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8800', '#8800ff'];
         
@@ -47,22 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 显示大奖特效
     function showJackpotEffect() {
-        // 创建彩带
+        // 现有代码保持不变
         createConfetti();
         
-        // 添加槽位高亮效果
         slot1.classList.add('jackpot');
         slot2.classList.add('jackpot');
         slot3.classList.add('jackpot');
         
-        // 显示大奖特效
         jackpotEffect.classList.add('active');
         
-        // 播放音效（如果需要）
         const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3');
         audio.play().catch(e => console.log('无法播放音效:', e));
         
-        // 5秒后关闭特效
         setTimeout(() => {
             jackpotEffect.classList.remove('active');
             slot1.classList.remove('jackpot');
@@ -71,43 +68,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // 创建滚动动画效果
-    function createSlotAnimation(slotElement, emojiArray, finalEmoji) {
-        const slotWrapper = slotElement.querySelector('.slot-wrapper');
-        const emojiElement = slotElement.querySelector('.emoji');
-        
-        // 清除现有内容
-        slotWrapper.innerHTML = '';
-        
-        // 创建滚动容器
-        const scrollContainer = document.createElement('div');
-        scrollContainer.className = 'scroll-container';
-        
-        // 添加20个随机emoji用于动画
-        for (let i = 0; i < 20; i++) {
-            const emojiDiv = document.createElement('div');
-            emojiDiv.className = 'emoji';
-            emojiDiv.textContent = getRandomEmoji(emojiArray);
-            scrollContainer.appendChild(emojiDiv);
-        }
-        
-        // 添加最终的emoji
-        const finalEmojiDiv = document.createElement('div');
-        finalEmojiDiv.className = 'emoji final';
-        finalEmojiDiv.textContent = finalEmoji;
-        scrollContainer.appendChild(finalEmojiDiv);
-        
-        // 将滚动容器添加到槽位
-        slotWrapper.appendChild(scrollContainer);
-        
-        // 添加动画类
-        scrollContainer.classList.add('scrolling');
-        
-        return scrollContainer;
+    // 重新设计的滚动动画函数
+    function animateSlot(slotElement, emojiArray, finalEmoji, duration) {
+        return new Promise(resolve => {
+            const slotWrapper = slotElement.querySelector('.slot-wrapper');
+            
+            // 创建滚动内容
+            let html = '';
+            // 添加足够多的随机emoji以确保滚动效果
+            for (let i = 0; i < 30; i++) {
+                html += `<div class="emoji">${getRandomEmoji(emojiArray)}</div>`;
+            }
+            // 最后添加最终结果的emoji
+            html += `<div class="emoji final">${finalEmoji}</div>`;
+            
+            // 设置滚动内容
+            slotWrapper.innerHTML = html;
+            slotWrapper.classList.add('spinning');
+            
+            // 设置动画持续时间
+            slotWrapper.style.animationDuration = `${duration / 1000}s`;
+            
+            // 动画结束后停止并显示最终结果
+            setTimeout(() => {
+                slotWrapper.classList.remove('spinning');
+                slotWrapper.innerHTML = `<div class="emoji">${finalEmoji}</div>`;
+                resolve();
+            }, duration);
+        });
     }
 
     // 旋转动画函数
-    function spin() {
+    async function spin() {
         // 禁用按钮
         spinButton.disabled = true;
         spinButton.textContent = '旋转中...';
@@ -117,39 +109,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const finalFlag = getRandomEmoji(flags);
         const finalElement = getRandomEmoji(elements);
         
-        // 创建滚动动画
-        const scrollContainer1 = createSlotAnimation(slot1, gestures, finalGesture);
-        const scrollContainer2 = createSlotAnimation(slot2, flags, finalFlag);
-        const scrollContainer3 = createSlotAnimation(slot3, elements, finalElement);
+        // 设置不同的动画持续时间
+        const duration1 = 1000 + Math.random() * 500;
+        const duration2 = 1500 + Math.random() * 500;
+        const duration3 = 2000 + Math.random() * 500;
         
-        // 随机设置停止时间
-        const spinDurations = [
-            1000 + Math.random() * 500,
-            1500 + Math.random() * 500,
-            2000 + Math.random() * 500
-        ];
+        // 并行启动所有动画
+        const animation1 = animateSlot(slot1, gestures, finalGesture, duration1);
+        const animation2 = animateSlot(slot2, flags, finalFlag, duration2);
+        const animation3 = animateSlot(slot3, elements, finalElement, duration3);
         
-        // 停止第一个槽位
-        setTimeout(() => {
-            scrollContainer1.style.animationPlayState = 'paused';
-        }, spinDurations[0]);
+        // 等待所有动画完成
+        await Promise.all([animation1, animation2, animation3]);
         
-        // 停止第二个槽位
-        setTimeout(() => {
-            scrollContainer2.style.animationPlayState = 'paused';
-        }, spinDurations[1]);
+        // 重新启用按钮
+        spinButton.disabled = false;
+        spinButton.textContent = '旋转!';
         
-        // 停止第三个槽位并显示结果
-        setTimeout(() => {
-            scrollContainer3.style.animationPlayState = 'paused';
-            
-            // 重新启用按钮
-            spinButton.disabled = false;
-            spinButton.textContent = '旋转!';
-            
-            // 显示结果
-            checkResult(finalGesture, finalFlag, finalElement);
-        }, spinDurations[2]);
+        // 显示结果
+        checkResult(finalGesture, finalFlag, finalElement);
     }
 
     // 检查结果并显示消息

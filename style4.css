@@ -56,89 +56,51 @@ h1 {
     position: relative;
 }
 
-/* 修改滚动动画相关的CSS部分 */
-
+/* 新的滚动动画样式 */
 .slot-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     width: 100%;
     height: 100%;
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slot-wrapper .emoji {
     font-size: 60px;
     line-height: 1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     width: 100%;
     text-align: center;
 }
 
 .slot-wrapper.spinning {
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
 }
 
-.slot-wrapper.spinning .emoji {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin: 5px 0;
-    animation: none;
-}
-
-@keyframes spin {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}
-
-.spinning {
-    animation: spin linear infinite;
-    transform-origin: center center;
-}
-
-/* 其他CSS保持不变 */
-
-.scroll-container {
+.emoji-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    animation: scrollAnimation 0.5s linear infinite;
+    width: 100%;
 }
 
-.scroll-container .emoji {
-    flex-shrink: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.slot-wrapper.spinning .emoji-container {
+    animation: slotSpin 0.2s linear infinite;
+    position: relative;
 }
 
-/* 滚动动画 */
-@keyframes scrollAnimation {
+@keyframes slotSpin {
     0% {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(calc(-100% + 120px));
+        transform: translateY(-100px);
     }
-}
-
-.scrolling {
-    animation: scrollAnimation 0.2s linear infinite;
 }
 
 #spin-button {
@@ -200,6 +162,10 @@ h1 {
         font-size: 40px; /* 减小字体大小 */
     }
     
+    .slot-wrapper .emoji {
+        font-size: 40px; /* 确保滚动中的emoji也使用较小字体 */
+    }
+    
     #spin-button {
         padding: 10px 30px;
         font-size: 1rem;
@@ -208,6 +174,15 @@ h1 {
     .result {
         font-size: 1rem;
         padding: 10px;
+    }
+    
+    @keyframes slotSpin {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-80px);
+        }
     }
 }
 

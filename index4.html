@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运老虎机</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <div class="container">
+        <h1>幸运老虎机</h1>
+        <div class="slot-machine">
+            <div class="slots">
+                <div class="slot" id="slot1">
+                    <div class="slot-wrapper">
+                        <div class="emoji">❓</div>
+                    </div>
+                </div>
+                <div class="slot" id="slot2">
+                    <div class="slot-wrapper">
+                        <div class="emoji">❓</div>
+                    </div>
+                </div>
+                <div class="slot" id="slot3">
+                    <div class="slot-wrapper">
+                        <div class="emoji">❓</div>
+                    </div>
+                </div>
+            </div>
+            <button id="spin-button">旋转!</button>
+        </div>
+        <div class="result" id="result">准备好了吗？点击旋转按钮开始游戏！</div>
+    </div>
+    
+    <!-- 添加大奖特效容器 -->
+    <div id="jackpot-effect" class="jackpot-effect">
+        <div class="jackpot-text">恭喜获得大奖！</div>
+        <div class="confetti-container"></div>
+    </div>
+    
+    <script src="script4.js"></script>
+</body>
+</html>

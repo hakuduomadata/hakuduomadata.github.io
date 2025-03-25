@@ -68,33 +68,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // 重新设计的滚动动画函数
-    function animateSlot(slotElement, emojiArray, finalEmoji, duration) {
+    // 创建更真实的老虎机滚动效果
+    function createSlotReel(slotElement, emojiArray, finalEmoji) {
+        const slotWrapper = slotElement.querySelector('.slot-wrapper');
+        slotWrapper.innerHTML = '';
+        slotWrapper.classList.add('spinning');
+        
+        // 创建emoji容器
+        const emojiContainer = document.createElement('div');
+        emojiContainer.className = 'emoji-container';
+        
+        // 添加足够多的随机emoji，确保滚动效果连贯
+        for (let i = 0; i < 20; i++) {
+            const emojiDiv = document.createElement('div');
+            emojiDiv.className = 'emoji';
+            emojiDiv.textContent = getRandomEmoji(emojiArray);
+            emojiContainer.appendChild(emojiDiv);
+        }
+        
+        // 最后添加最终结果的emoji
+        const finalEmojiDiv = document.createElement('div');
+        finalEmojiDiv.className = 'emoji final';
+        finalEmojiDiv.textContent = finalEmoji;
+        emojiContainer.appendChild(finalEmojiDiv);
+        
+        slotWrapper.appendChild(emojiContainer);
+        
+        return {
+            container: emojiContainer,
+            finalEmoji: finalEmoji
+        };
+    }
+
+    // 停止滚动并显示结果
+    function stopReel(slotElement, finalEmoji, delay) {
         return new Promise(resolve => {
-            const slotWrapper = slotElement.querySelector('.slot-wrapper');
-            
-            // 创建滚动内容
-            let html = '';
-            // 添加足够多的随机emoji以确保滚动效果
-            for (let i = 0; i < 30; i++) {
-                html += `<div class="emoji">${getRandomEmoji(emojiArray)}</div>`;
-            }
-            // 最后添加最终结果的emoji
-            html += `<div class="emoji final">${finalEmoji}</div>`;
-            
-            // 设置滚动内容
-            slotWrapper.innerHTML = html;
-            slotWrapper.classList.add('spinning');
-            
-            // 设置动画持续时间
-            slotWrapper.style.animationDuration = `${duration / 1000}s`;
-            
-            // 动画结束后停止并显示最终结果
             setTimeout(() => {
+                const slotWrapper = slotElement.querySelector('.slot-wrapper');
                 slotWrapper.classList.remove('spinning');
-                slotWrapper.innerHTML = `<div class="emoji">${finalEmoji}</div>`;
+                slotWrapper.innerHTML = '';
+                
+                const emojiDiv = document.createElement('div');
+                emojiDiv.className = 'emoji';
+                emojiDiv.textContent = finalEmoji;
+                slotWrapper.appendChild(emojiDiv);
+                
+                // 添加停止音效
+                const stopSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-wheel-1932.mp3');
+                stopSound.volume = 0.3;
+                stopSound.play().catch(e => console.log('无法播放音效:', e));
+                
                 resolve();
-            }, duration);
+            }, delay);
         });
     }
 
@@ -104,23 +129,30 @@ document.addEventListener('DOMContentLoaded', () => {
         spinButton.disabled = true;
         spinButton.textContent = '旋转中...';
         
+        // 播放开始旋转音效
+        const spinSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-spin-1931.mp3');
+        spinSound.volume = 0.5;
+        spinSound.play().catch(e => console.log('无法播放音效:', e));
+        
         // 选择最终的emoji
         const finalGesture = getRandomEmoji(gestures);
         const finalFlag = getRandomEmoji(flags);
         const finalElement = getRandomEmoji(elements);
         
-        // 设置不同的动画持续时间
-        const duration1 = 1000 + Math.random() * 500;
-        const duration2 = 1500 + Math.random() * 500;
-        const duration3 = 2000 + Math.random() * 500;
+        // 创建滚动动画
+        const reel1 = createSlotReel(slot1, gestures, finalGesture);
+        const reel2 = createSlotReel(slot2, flags, finalFlag);
+        const reel3 = createSlotReel(slot3, elements, finalElement);
         
-        // 并行启动所有动画
-        const animation1 = animateSlot(slot1, gestures, finalGesture, duration1);
-        const animation2 = animateSlot(slot2, flags, finalFlag, duration2);
-        const animation3 = animateSlot(slot3, elements, finalElement, duration3);
+        // 设置不同的停止时间，增加悬念感
+        const stopDelay1 = 750 + Math.random() * 500;
+        const stopDelay2 = stopDelay1 + 200 + Math.random() * 300;
+        const stopDelay3 = stopDelay2 + 10 + Math.random() * 50;
         
-        // 等待所有动画完成
-        await Promise.all([animation1, animation2, animation3]);
+        // 依次停止每个转轮
+        await stopReel(slot1, finalGesture, stopDelay1);
+        await stopReel(slot2, finalFlag, stopDelay2);
+        await stopReel(slot3, finalElement, stopDelay3);
         
         // 重新启用按钮
         spinButton.disabled = false;

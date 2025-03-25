@@ -71,16 +71,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
+    // 创建滚动动画效果
+    function createSlotAnimation(slotElement, emojiArray, finalEmoji) {
+        const slotWrapper = slotElement.querySelector('.slot-wrapper');
+        const emojiElement = slotElement.querySelector('.emoji');
+        
+        // 清除现有内容
+        slotWrapper.innerHTML = '';
+        
+        // 创建滚动容器
+        const scrollContainer = document.createElement('div');
+        scrollContainer.className = 'scroll-container';
+        
+        // 添加20个随机emoji用于动画
+        for (let i = 0; i < 20; i++) {
+            const emojiDiv = document.createElement('div');
+            emojiDiv.className = 'emoji';
+            emojiDiv.textContent = getRandomEmoji(emojiArray);
+            scrollContainer.appendChild(emojiDiv);
+        }
+        
+        // 添加最终的emoji
+        const finalEmojiDiv = document.createElement('div');
+        finalEmojiDiv.className = 'emoji final';
+        finalEmojiDiv.textContent = finalEmoji;
+        scrollContainer.appendChild(finalEmojiDiv);
+        
+        // 将滚动容器添加到槽位
+        slotWrapper.appendChild(scrollContainer);
+        
+        // 添加动画类
+        scrollContainer.classList.add('scrolling');
+        
+        return scrollContainer;
+    }
+
     // 旋转动画函数
     function spin() {
         // 禁用按钮
         spinButton.disabled = true;
         spinButton.textContent = '旋转中...';
         
-        // 添加旋转动画类
-        slot1.querySelector('.slot-wrapper').classList.add('spinning');
-        slot2.querySelector('.slot-wrapper').classList.add('spinning');
-        slot3.querySelector('.slot-wrapper').classList.add('spinning');
+        // 选择最终的emoji
+        const finalGesture = getRandomEmoji(gestures);
+        const finalFlag = getRandomEmoji(flags);
+        const finalElement = getRandomEmoji(elements);
+        
+        // 创建滚动动画
+        const scrollContainer1 = createSlotAnimation(slot1, gestures, finalGesture);
+        const scrollContainer2 = createSlotAnimation(slot2, flags, finalFlag);
+        const scrollContainer3 = createSlotAnimation(slot3, elements, finalElement);
         
         // 随机设置停止时间
         const spinDurations = [
@@ -91,39 +131,29 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 停止第一个槽位
         setTimeout(() => {
-            slot1.querySelector('.slot-wrapper').classList.remove('spinning');
-            const selectedGesture = getRandomEmoji(gestures);
-            slot1.querySelector('.emoji').textContent = selectedGesture;
+            scrollContainer1.style.animationPlayState = 'paused';
         }, spinDurations[0]);
         
         // 停止第二个槽位
         setTimeout(() => {
-            slot2.querySelector('.slot-wrapper').classList.remove('spinning');
-            const selectedFlag = getRandomEmoji(flags);
-            slot2.querySelector('.emoji').textContent = selectedFlag;
+            scrollContainer2.style.animationPlayState = 'paused';
         }, spinDurations[1]);
         
         // 停止第三个槽位并显示结果
         setTimeout(() => {
-            slot3.querySelector('.slot-wrapper').classList.remove('spinning');
-            const selectedElement = getRandomEmoji(elements);
-            slot3.querySelector('.emoji').textContent = selectedElement;
+            scrollContainer3.style.animationPlayState = 'paused';
             
             // 重新启用按钮
             spinButton.disabled = false;
             spinButton.textContent = '旋转!';
             
             // 显示结果
-            checkResult();
+            checkResult(finalGesture, finalFlag, finalElement);
         }, spinDurations[2]);
     }
 
     // 检查结果并显示消息
-    function checkResult() {
-        const emoji1 = slot1.querySelector('.emoji').textContent;
-        const emoji2 = slot2.querySelector('.emoji').textContent;
-        const emoji3 = slot3.querySelector('.emoji').textContent;
-        
+    function checkResult(emoji1, emoji2, emoji3) {
         // 检查是否是大奖组合
         const isJackpot = (
             emoji1 === JACKPOT_COMBINATION.gesture && 

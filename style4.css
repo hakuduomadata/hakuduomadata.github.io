@@ -56,21 +56,61 @@ h1 {
     position: relative;
 }
 
+/* 修改滚动动画相关的CSS部分 */
+
 .slot-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
 }
 
-.emoji {
+.slot-wrapper .emoji {
     font-size: 60px;
     line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
 }
 
-/* 新增：滚动容器样式 */
+.slot-wrapper.spinning {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.slot-wrapper.spinning .emoji {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 5px 0;
+    animation: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.spinning {
+    animation: spin linear infinite;
+    transform-origin: center center;
+}
+
+/* 其他CSS保持不变 */
+
 .scroll-container {
     display: flex;
     flex-direction: column;

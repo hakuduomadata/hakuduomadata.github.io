@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slot2 = document.getElementById('slot2');
     const slot3 = document.getElementById('slot3');
     const spinButton = document.getElementById('spin-button');
+    const winButton = document.getElementById('win-button');
     const resultDisplay = document.getElementById('result');
     const jackpotEffect = document.getElementById('jackpot-effect');
     const confettiContainer = document.querySelector('.confetti-container');
@@ -124,9 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 旋转动画函数
-    async function spin() {
+    async function spin(forceWin = false) {
         // 禁用按钮
         spinButton.disabled = true;
+        winButton.disabled = true;
         spinButton.textContent = '旋转中...';
         
         // 播放开始旋转音效
@@ -135,9 +137,19 @@ document.addEventListener('DOMContentLoaded', () => {
         spinSound.play().catch(e => console.log('无法播放音效:', e));
         
         // 选择最终的emoji
-        const finalGesture = getRandomEmoji(gestures);
-        const finalFlag = getRandomEmoji(flags);
-        const finalElement = getRandomEmoji(elements);
+        let finalGesture, finalFlag, finalElement;
+        
+        if (forceWin) {
+            // 如果是必胜模式，直接使用大奖组合
+            finalGesture = JACKPOT_COMBINATION.gesture;
+            finalFlag = JACKPOT_COMBINATION.flag;
+            finalElement = JACKPOT_COMBINATION.element;
+        } else {
+            // 随机选择
+            finalGesture = getRandomEmoji(gestures);
+            finalFlag = getRandomEmoji(flags);
+            finalElement = getRandomEmoji(elements);
+        }
         
         // 创建滚动动画
         const reel1 = createSlotReel(slot1, gestures, finalGesture);
@@ -156,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 重新启用按钮
         spinButton.disabled = false;
+        winButton.disabled = false;
         spinButton.textContent = '旋转!';
         
         // 显示结果
@@ -205,13 +218,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 添加点击事件监听器
-    spinButton.addEventListener('click', spin);
+    spinButton.addEventListener('click', () => spin(false));
+    
+    // 添加必胜按钮点击事件
+    winButton.addEventListener('click', () => spin(true));
 
     // 添加键盘事件监听器（空格键也可以旋转）
     document.addEventListener('keydown', (event) => {
         if (event.code === 'Space' && !spinButton.disabled) {
             event.preventDefault();
-            spin();
+            spin(false);
         }
     });
 

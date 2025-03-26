@@ -752,3 +752,44 @@ h1 {
     50% { transform: scale(1.5); opacity: 0.7; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+/* 中国国旗惩罚特效样式 */
+.penalty-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: rgba(255, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.penalty-effect.active {
+    display: flex;
+    animation: penaltyBackground 0.3s ease-in-out infinite alternate;
+}
+
+.penalty-text {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 0 10px #000, 0 0 20px #000;
+    animation: penaltyText 0.5s ease-in-out infinite alternate;
+    z-index: 1001;
+    font-family: 'Bungee', cursive;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+@keyframes penaltyBackground {
+    0% { background-color: rgba(255, 0, 0, 0.7); }
+    100% { background-color: rgba(200, 0, 0, 0.8); }
+}
+
+@keyframes penaltyText {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}

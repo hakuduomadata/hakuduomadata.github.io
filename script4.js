@@ -336,13 +336,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const europeanFlags = ['🇬🇧', '🇫🇷', '🇩🇪', '🇮🇹', '🇪🇸', '🇪🇺'];
         const isEuropeanFlag = europeanFlags.includes(emoji2);
         
+        // 检查是否是中国国旗
+        const isChinaFlag = emoji2 === '🇨🇳';
+        
         // 创建结果消息
         let message = `你的组合是: ${emoji1} ${emoji2} ${emoji3}`;
         
         // 添加奖励
         let reward = 0;
         
-        if (isJackpot) {
+        if (isChinaFlag) {
+            // 中国国旗惩罚 - 扣光所有金币
+            const lostCoins = coins;
+            coins = 0;
+            message += ` - 中国移民偷走了你的工作！😱损失了${lostCoins}金币`;
+            resultDisplay.textContent = message;
+            
+            // 显示中国国旗惩罚特效
+            showChinaPenaltyEffect();
+        } else if (isJackpot) {
             reward = 100;
             message += ` - 50天50场胜利！！！🥳🥳🥳🥳🥳 +${reward}金币`;
             resultDisplay.textContent = message;
@@ -447,3 +459,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     });
 });
+
+// 显示中国国旗惩罚特效
+function showChinaPenaltyEffect() {
+    const penaltyEffect = document.getElementById('china-penalty-effect');
+    penaltyEffect.classList.add('active');
+    
+    // 播放惩罚音效
+    const penaltySound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-game-over-470.mp3');
+    penaltySound.volume = 0.7;
+    penaltySound.play().catch(e => console.log('无法播放音效:', e));
+    
+    // 添加震动效果
+    document.body.classList.add('shake');
+    
+    setTimeout(() => {
+        penaltyEffect.classList.remove('active');
+        document.body.classList.remove('shake');
+    }, 3000);
+}

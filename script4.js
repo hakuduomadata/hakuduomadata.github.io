@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 定义三种不同类型的emoji
-    const gestures = ['👊', '✌️', '👍', '👋', '👈', '👉', '👆', '👇', '✊', '👏', '🤝', '🙏'];
+    const gestures = ['👊', '✌️', '👍', '👋', '✊', '👏', '🤝', '🙏', '🤌🏻', '💪🏻', '👐🏻', '☝🏻️', '🙌🏻', '✋🏻', '🖕🏻', '✍🏻️', '👎🏻'];
     const flags = ['🇨🇳', '🇺🇸', '🇯🇵', '🇬🇧', '🇫🇷', '🇩🇪', '🇮🇹', '🇪🇸', '🇷🇺', '🇧🇷', '🇰🇷', '🇦🇺', '🇨🇦', '🇮🇳', '🇲🇽', '🇿🇦', '🇸🇦', '🇪🇺'];
-    const elements = ['🔥', '💧', '⚡', '🌪️', '❄️', '🌊', '🌈', '☀️', '🌙', '⭐', '☁️', '🌱'];
+    // 添加各国特色食物emoji到元素中
+    const elements = [
+        '🔥', '💧', '⚡', '🌪️', '❄️', '🌊', '🌈', '☀️', '🌙', '⭐', '☁️', '🌱',
+        '🍕', '🍔', '🍣', '🥖', '🥐', '🌮', '🌯', '🍜', '🍚', '🍝', '🥟', '🍤',
+        '🍦', '🥗', '🍺', '🍾', '🍵', '🧋', '🍡', '🥘', '🍲', '🍛', '🫔', '🥓'
+    ];
 
     // 获取DOM元素
     const slot1 = document.getElementById('slot1');
@@ -13,7 +18,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDisplay = document.getElementById('result');
     const jackpotEffect = document.getElementById('jackpot-effect');
     const confettiContainer = document.querySelector('.confetti-container');
-
+    const lever = document.getElementById('lever');
+    const coinSlot = document.querySelector('.coin-slot');
+    const coinCountDisplay = document.getElementById('coin-count'); // 添加金币计数器元素
+    
+    // 添加游戏币计数
+    let coins = 0;
+    const coinSlotText = document.querySelector('.coin-slot-text');
+    updateCoinDisplay();
+    
+    // 更新投币口和金币计数器显示
+    function updateCoinDisplay() {
+        // 移除投币口的金币计数，只显示"投币口"文字
+        coinSlotText.textContent = `投币口`;
+        
+        // 更新右上角的金币计数器
+        coinCountDisplay.textContent = coins;
+        
+        // 添加金币增加动画
+        coinCountDisplay.style.animation = 'none';
+        setTimeout(() => {
+            coinCountDisplay.style.animation = 'pulse 0.5s';
+        }, 10);
+    }
+    
     // 定义大奖组合
     const JACKPOT_COMBINATION = {
         gesture: '👊',
@@ -49,8 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 显示大奖特效
     function showJackpotEffect() {
-        // 现有代码保持不变
+        // 创建更多彩带
         createConfetti();
+        
+        // 添加震动效果
+        document.body.classList.add('shake');
         
         slot1.classList.add('jackpot');
         slot2.classList.add('jackpot');
@@ -58,15 +89,97 @@ document.addEventListener('DOMContentLoaded', () => {
         
         jackpotEffect.classList.add('active');
         
-        const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3');
-        audio.play().catch(e => console.log('无法播放音效:', e));
+        // 播放多重音效
+        const winSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3');
+        winSound.volume = 0.7;
+        winSound.play().catch(e => console.log('无法播放音效:', e));
+        
+        // 播放欢呼声
+        setTimeout(() => {
+            const cheerSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-crowd-in-stadium-cheering-loop-442.mp3');
+            cheerSound.volume = 0.4;
+            cheerSound.play().catch(e => console.log('无法播放音效:', e));
+        }, 500);
+        
+        // 播放金币掉落音效
+        setTimeout(() => {
+            const coinSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-coins-handling-1939.mp3');
+            coinSound.volume = 0.5;
+            coinSound.play().catch(e => console.log('无法播放音效:', e));
+        }, 1000);
+        
+        // 添加额外的视觉效果
+        createExtraEffects();
         
         setTimeout(() => {
             jackpotEffect.classList.remove('active');
             slot1.classList.remove('jackpot');
             slot2.classList.remove('jackpot');
             slot3.classList.remove('jackpot');
+            document.body.classList.remove('shake');
         }, 5000);
+    }
+
+    // 创建彩带效果
+    function createConfetti() {
+        confettiContainer.innerHTML = '';
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8800', '#8800ff', '#ff0088', '#00ff88', '#gold', '#silver'];
+        
+        // 增加彩带数量
+        for (let i = 0; i < 300; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = `${5 + Math.random() * 15}px`;
+            confetti.style.height = `${5 + Math.random() * 15}px`;
+            confetti.style.opacity = Math.random();
+            confetti.style.animationDuration = `${3 + Math.random() * 5}s`;
+            confetti.style.animationDelay = `${Math.random() * 2}s`;
+            
+            // 随机形状
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            } else if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '5px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            }
+            
+            confettiContainer.appendChild(confetti);
+        }
+    }
+
+    // 添加额外的视觉效果
+    function createExtraEffects() {
+        // 创建闪光效果
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                const flash = document.createElement('div');
+                flash.className = 'jackpot-flash';
+                document.body.appendChild(flash);
+                
+                setTimeout(() => {
+                    flash.remove();
+                }, 500);
+            }, i * 300);
+        }
+        
+        // 创建金币雨
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                const coin = document.createElement('div');
+                coin.className = 'jackpot-coin';
+                coin.textContent = '💰';
+                coin.style.left = `${Math.random() * 100}%`;
+                coin.style.animationDuration = `${1 + Math.random() * 3}s`;
+                coin.style.fontSize = `${20 + Math.random() * 30}px`;
+                document.body.appendChild(coin);
+                
+                setTimeout(() => {
+                    coin.remove();
+                }, 3000);
+            }, i * 100);
+        }
     }
 
     // 创建更真实的老虎机滚动效果
@@ -124,11 +237,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 拉杆动画
+    function pullLever() {
+        return new Promise(resolve => {
+            lever.classList.add('pulled');
+            
+            // 播放拉杆音效
+            const leverSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-metal-handle-pull-2709.mp3');
+            leverSound.volume = 0.5;
+            leverSound.play().catch(e => console.log('无法播放音效:', e));
+            
+            setTimeout(() => {
+                lever.classList.remove('pulled');
+                resolve();
+            }, 1000);
+        });
+    }
+
     // 旋转动画函数
     async function spin(forceWin = false) {
-        // 禁用按钮
+        // 检查是否有足够的币
+        if (coins <= 0 && !forceWin) {
+            resultDisplay.textContent = "请先投币后再玩！点击投币口添加游戏币。";
+            resultDisplay.style.animation = 'none';
+            setTimeout(() => {
+                resultDisplay.style.animation = 'pulse 0.5s';
+            }, 10);
+            return;
+        }
+        
+        // 如果不是强制获胜模式，消耗一个币
+        if (!forceWin) {
+            coins--;
+            updateCoinDisplay();
+        }
+        
+        // 禁用按钮和拉杆
         spinButton.disabled = true;
         winButton.disabled = true;
+        lever.style.pointerEvents = 'none';
         spinButton.textContent = '旋转中...';
         
         // 播放开始旋转音效
@@ -166,9 +313,10 @@ document.addEventListener('DOMContentLoaded', () => {
         await stopReel(slot2, finalFlag, stopDelay2);
         await stopReel(slot3, finalElement, stopDelay3);
         
-        // 重新启用按钮
+        // 重新启用按钮和拉杆
         spinButton.disabled = false;
         winButton.disabled = false;
+        lever.style.pointerEvents = 'auto';
         spinButton.textContent = '旋转!';
         
         // 显示结果
@@ -184,15 +332,27 @@ document.addEventListener('DOMContentLoaded', () => {
             emoji3 === JACKPOT_COMBINATION.element
         );
         
+        // 检查是否是欧洲国家旗帜
+        const europeanFlags = ['🇬🇧', '🇫🇷', '🇩🇪', '🇮🇹', '🇪🇸', '🇪🇺'];
+        const isEuropeanFlag = europeanFlags.includes(emoji2);
+        
         // 创建结果消息
         let message = `你的组合是: ${emoji1} ${emoji2} ${emoji3}`;
         
+        // 添加奖励
+        let reward = 0;
+        
         if (isJackpot) {
-            message += " - 50天50场胜利！！！🥳🥳🥳🥳🥳";
+            reward = 100;
+            message += ` - 50天50场胜利！！！🥳🥳🥳🥳🥳 +${reward}金币`;
             resultDisplay.textContent = message;
             
             // 触发大奖特效
             showJackpotEffect();
+        } else if (isEuropeanFlag) {
+            reward = 10;
+            message += ` - 你不准吃白食 +${reward}金币`;
+            resultDisplay.textContent = message;
         } else {
             // 添加一些随机的有趣评论
             const comments = [
@@ -210,6 +370,17 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDisplay.textContent = message;
         }
         
+        // 添加奖励金币
+        if (reward > 0) {
+            coins += reward;
+            updateCoinDisplay();
+            
+            // 播放获得金币音效
+            const rewardSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-bonus-earned-in-video-game-2058.mp3');
+            rewardSound.volume = 0.5;
+            rewardSound.play().catch(e => console.log('无法播放音效:', e));
+        }
+        
         // 添加特效
         resultDisplay.style.animation = 'none';
         setTimeout(() => {
@@ -222,6 +393,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 添加必胜按钮点击事件
     winButton.addEventListener('click', () => spin(true));
+    
+    // 添加拉杆点击事件
+    lever.addEventListener('click', async () => {
+        await pullLever();
+        spin(false);
+    });
 
     // 添加键盘事件监听器（空格键也可以旋转）
     document.addEventListener('keydown', (event) => {
@@ -241,4 +418,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
+
+    // 添加投币口点击事件
+    coinSlot.addEventListener('click', () => {
+        // 播放投币音效
+        const coinSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-coins-handling-1939.mp3');
+        coinSound.volume = 0.5;
+        coinSound.play().catch(e => console.log('无法播放音效:', e));
+        
+        // 添加游戏币
+        coins += 5;
+        updateCoinDisplay();
+        
+        // 显示提示
+        resultDisplay.textContent = `已添加5个游戏币！当前共有${coins}个游戏币。`;
+        resultDisplay.style.animation = 'none';
+        setTimeout(() => {
+            resultDisplay.style.animation = 'pulse 0.5s';
+        }, 10);
+        
+        // 添加投币动画
+        const coin = document.createElement('div');
+        coin.className = 'coin';
+        coinSlot.appendChild(coin);
+        
+        setTimeout(() => {
+            coin.remove();
+        }, 1000);
+    });
 });

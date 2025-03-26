@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 触发大奖特效
             showJackpotEffect();
         } else if (isEuropeanFlag) {
-            reward = 10;
+            reward = 3;
             message += ` - 你不准吃白食 +${reward}金币`;
             resultDisplay.textContent = message;
         } else {

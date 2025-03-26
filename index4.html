@@ -5,37 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>幸运老虎机</title>
     <link rel="stylesheet" href="style4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>幸运老虎机</h1>
-        <div class="slot-machine">
-            <div class="slots">
-                <div class="slot" id="slot1">
-                    <div class="slot-wrapper">
-                        <div class="emoji">❓</div>
+        <div class="slot-machine-cabinet">
+            <!-- 添加金币计数器 -->
+            <div class="coin-counter">
+                <span class="emoji">💰</span>
+                <span class="count" id="coin-count">0</span>
+            </div>
+            
+            <div class="machine-top">
+                <div class="lights">
+                    <div class="light"></div>
+                    <div class="light"></div>
+                    <div class="light"></div>
+                    <div class="light"></div>
+                    <div class="light"></div>
+                </div>
+                <h1>幸运老虎机</h1>
+            </div>
+            
+            <div class="slot-machine">
+                <div class="slots-container">
+                    <div class="slots">
+                        <div class="slot" id="slot1">
+                            <div class="slot-wrapper">
+                                <div class="emoji">❓</div>
+                            </div>
+                        </div>
+                        <div class="slot" id="slot2">
+                            <div class="slot-wrapper">
+                                <div class="emoji">❓</div>
+                            </div>
+                        </div>
+                        <div class="slot" id="slot3">
+                            <div class="slot-wrapper">
+                                <div class="emoji">❓</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jackpot-line"></div>
+                </div>
+                
+                <div class="controls">
+                    <div class="lever-container">
+                        <div class="lever-base"></div>
+                        <div class="lever" id="lever"></div>
+                    </div>
+                    <div class="buttons-container">
+                        <button id="spin-button">旋转!</button>
+                        <button id="win-button" class="win-button">我就要赢！😡</button>
                     </div>
                 </div>
-                <div class="slot" id="slot2">
-                    <div class="slot-wrapper">
-                        <div class="emoji">❓</div>
-                    </div>
-                </div>
-                <div class="slot" id="slot3">
-                    <div class="slot-wrapper">
-                        <div class="emoji">❓</div>
-                    </div>
+                
+                <div class="result-display">
+                    <div class="result" id="result">准备好了吗？拉下拉杆或点击旋转按钮开始游戏！</div>
                 </div>
             </div>
-            <button id="spin-button">旋转!</button>
-            <button id="win-button" class="win-button">我就要赢！😡</button>
+            
+            <div class="machine-bottom">
+                <div class="coin-slot">
+                    <div class="coin-slot-text">投币口</div>
+                </div>
+            </div>
         </div>
-        <div class="result" id="result">准备好了吗？点击旋转按钮开始游戏！</div>
     </div>
     
     <!-- 添加大奖特效容器 -->
     <div id="jackpot-effect" class="jackpot-effect">
-        <div class="jackpot-text">恭喜获得大奖！</div>
+        <div class="jackpot-text">MAGA！🙏🙏💪🇺🇸</div>
         <div class="confetti-container"></div>
     </div>
     

@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let message = `你的组合是: ${emoji1} ${emoji2} ${emoji3}`;
         
         if (isJackpot) {
-            message += " - 恭喜你获得大奖！！！";
+            message += " - 50天50场胜利！！！🥳🥳🥳🥳🥳";
             resultDisplay.textContent = message;
             
             // 触发大奖特效

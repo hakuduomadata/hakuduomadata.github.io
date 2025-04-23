@@ -1027,6 +1027,7 @@ body {
 .service-images {
     flex: 0 0 70%;  /* 修改：固定占40%宽度 */
     height: 300px;
+    width: 777px;
     overflow: hidden;
     border-radius: 8px;
 }

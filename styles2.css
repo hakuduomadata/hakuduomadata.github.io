@@ -20,7 +20,7 @@ body {
 
 /* 源头工厂标题部分 - 减小高度 */
 .factory-header {
-    background-color: #f6f6f6;
+    background-color: #fff;
     /*background: linear-gradient(135deg, #f2f2f2 50%, #e0e0e0 100%);*/
     padding: 15px 0;
     text-align: center;
@@ -46,6 +46,7 @@ body {
 
 /* 工厂信息展示部分 - 减小内边距 */
 .factory-showcase {
+    background-color: #f6f6f6;
     padding: 15px 0;
 }
 
@@ -120,7 +121,7 @@ body {
 
 .order-tag {
     color: #000; 
-    width: 442px;
+    width: 370px;
     background: linear-gradient(135deg, #fff 40%, #f5f5 70%, #3498db 100%);
     padding: 15px 23px;
     /*border: 1px solid #9d9d9d;*/

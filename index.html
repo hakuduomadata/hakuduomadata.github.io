@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruixin Glassware - Complete Product Category Mapping</title>
+<style>
+    :root {
+        --primary-dark: #1E293B; /* 午夜蓝 */
+        --accent-gold: #B78C43;  /* 奢华金 */
+        --bg-light: #F8FAFC;
+        --border-color: #E2E8F0;
+        --text-main: #334155;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-main);
+        line-height: 1.6;
+        padding: 40px 20px;
+        margin: 0;
+    }
+
+    .matrix-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+    .matrix-header {
+        background-color: var(--primary-dark);
+        color: #ffffff;
+        padding: 30px 40px;
+        border-bottom: 4px solid var(--accent-gold);
+        text-align: center;
+    }
+
+    .matrix-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .matrix-header p {
+        margin: 0;
+        color: #CBD5E1;
+        font-size: 15px;
+    }
+
+    .category-title {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+        color: var(--primary-dark);
+        border-bottom: 2px solid var(--accent-gold);
+        padding: 25px 40px 15px;
+        margin: 0;
+        background-color: #fdfbf7;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 14px 20px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+        background-color: #F1F5F9;
+        color: var(--primary-dark);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr:hover {
+        background-color: #F8FAFC;
+    }
+
+    .sub-cat-row {
+        background-color: #fcf8f2 !important;
+        font-weight: 600;
+        color: var(--accent-gold);
+    }
+
+    .core-product {
+        font-weight: 600;
+        color: #0F172A;
+        background-color: #fffaf0;
+    }
+    
+    .badge-star {
+        background-color: #FEF3C7;
+        color: #D97706;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        margin-right: 6px;
+        border: 1px solid #FDE68A;
+    }
+
+    .badge-new {
+        background-color: #FEE2E2;
+        color: #B91C1C;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        margin-left: 6px;
+        border: 1px solid #FECACA;
+    }
+
+    .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        margin: 2px 4px 2px 0;
+        white-space: nowrap;
+    }
+
+    .tag-primary {
+        background-color: #E0E7FF;
+        color: #4338CA;
+        border: 1px solid #C7D2FE;
+    }
+
+    .tag-secondary {
+        background-color: #F1F5F9;
+        color: #475569;
+        border: 1px solid #E2E8F0;
+    }
+    /* ========================================= */
+    /* 导航栏与下拉菜单 (Mega Menu) 核心样式 */
+    /* ========================================= */
+    .navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 100;
+    }
+
+    .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .nav-list > li {
+        position: relative;
+    }
+
+    .nav-list > li > a {
+        display: block;
+        padding: 16px 24px;
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+
+    .nav-list > li > a:hover {
+        color: var(--accent-gold);
+    }
+
+    /* 下拉巨型菜单容器 */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        min-width: 900px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        border: 1px solid var(--border-color);
+        border-radius: 0 0 8px 8px;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    /* 悬停触发显示 */
+    .nav-list > li.dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        display: flex;
+    }
+
+    /* 菜单列 */
+    .mega-column {
+        flex: 1;
+    }
+
+    .mega-column h3 {
+        margin: 0 0 10px 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent-gold);
+    }
+
+    .mega-column h3 a {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .mega-column a.sub-link {
+        display: block;
+        padding: 8px 0;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 13px;
+        transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .mega-column a.sub-link:hover {
+        color: var(--accent-gold);
+        padding-left: 5px;
+        font-weight: 500;
+    }
+</style>
+</head>
+<body>
+
+<div class="matrix-container">
+    <!-- Header -->
+    <div class="matrix-header">
+        <h1>👑 Master Product Category Mapping Matrix</h1>
+        <p>Ruixin Glassware B2B Independent Station - 100% SKU Coverage (Upgraded Structure)</p>
+    </div>
+    
+<!-- ========================================= -->
+    <!-- 模拟主导航栏 (Global Navigation) 更新版      -->
+    <!-- ========================================= -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="index.html">🏠 Home (Matrix)</a></li>
+            
+            <li class="dropdown">
+                <a href="products/index.html" class="dropbtn">📦 Products ▼</a>
+                <div class="dropdown-content">
+                    
+                    <!-- 列 1: 奢华酒具 -->
+                    <div class="mega-column">
+                        <h3><a href="products/luxury-barware/index.html">🍷 Luxury Barware</a></h3>
+                        <a href="products/luxury-barware/stemware-goblets.html" class="sub-link">1.1 Stemware & Goblets</a>
+                        <a href="products/luxury-barware/whiskey-rocks.html" class="sub-link">1.2 Whiskey & Rocks Glasses</a>
+                        <a href="products/luxury-barware/craft-beer-pints.html" class="sub-link">1.3 Craft Beer Pints & Steins</a>
+                        <a href="products/luxury-barware/shot-tasting.html" class="sub-link">1.4 Shot & Tasting Glasses</a>
+                        <a href="products/luxury-barware/decanters-novelty.html" class="sub-link">1.5 Decanters & Novelty Sets</a>
+                        <a href="products/luxury-barware/sports-embedded.html" class="sub-link">1.6 Embedded Sports Novelty</a>
+                    </div>
+
+                    <!-- 列 2: 3D爆款与香氛 -->
+                    <div class="mega-column">
+                        <h3><a href="products/3d-holiday/index.html">🎄 3D Icon & Holiday</a></h3>
+                        <a href="products/3d-holiday/christmas-halloween.html" class="sub-link">2.1 Christmas & Halloween</a>
+                        <a href="products/3d-holiday/everyday-3d.html" class="sub-link">2.2 Everyday 3D Appliqué</a>
+                        <a href="products/3d-holiday/inner-figurine.html" class="sub-link">2.3 3D Inner Figurine</a>
+                        
+                        <h3 style="margin-top: 20px;"><a href="products/candle-vessels/index.html">🕯️ Candle Vessels & Decor</a></h3>
+                        <a href="products/candle-vessels/electroplated-matte.html" class="sub-link">3.1 Electroplated & Matte Jars</a>
+                        <a href="products/candle-vessels/decal-printed-jars.html" class="sub-link">3.2 Decal & Printed Vessels</a>
+                        <a href="products/candle-vessels/embossed-fragrance.html" class="sub-link">3.3 Embossed Holders & Decor</a>
+                        <a href="products/candle-vessels/double-wall-vessels.html" class="sub-link">3.4 Double-Wall Vessels</a>
+                    </div>
+
+                    <!-- 列 3: 咖啡水杯与快捷入口 -->
+                    <div class="mega-column">
+                        <h3><a href="products/cafe-lifestyle/index.html">☕ Cafe & Lifestyle</a></h3>
+                        <a href="products/cafe-lifestyle/water-beverage.html" class="sub-link">4.1 High-End Water & Beverage</a>
+                        <a href="products/cafe-lifestyle/double-wall-cafe.html" class="sub-link">4.2 Double-Wall Coffee/Tea</a>
+                        <a href="products/cafe-lifestyle/mugs-teacups.html" class="sub-link">4.3 Glass Mugs & Teacups</a>
+
+                        <div style="margin-top: 30px; padding: 15px; background: #fffaf0; border-left: 4px solid #B78C43; border-radius: 4px;">
+                            <span style="font-size: 12px; color: #B78C43; font-weight: bold;">OEM/ODM SERVICE</span>
+                            <a href="#" style="display: block; margin-top: 5px; color: #1E293B; text-decoration: none; font-weight: 600; font-size: 14px;">Explore Custom Molding ➔</a>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            
+            <li><a href="#">🏭 About Factory</a></li>
+            <li><a href="#">✉️ Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- 🍷 CATEGORY 1: LUXURY BARWARE & STEMWARE                    -->
+    <!-- ========================================================= -->
+    <h2 class="category-title"><span>🍷</span> Category 1: Luxury Barware & Stemware</h2>
+    <table>
+        <thead>
+            <tr>
+                <th width="55%">Exact Product Name in CSV / System</th>
+                <th width="20%">Primary Category (Menu)</th>
+                <th width="25%">Secondary Category (Tags)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 1.1 Stemware -->
+            <tr class="sub-cat-row"><td colspan="3">1.1 Stemware & Goblets (高脚杯/红酒/香槟)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #6</span> Wholesale Greek Key Gold Rim Glassware | Luxury Bar & Stemware</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Heavy Bottom Greek Key Gold Rim Champagne Flutes Brandy Snifters Highball Rocks Whiskey Red Wine Drinking Glass</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Luxury Silver Band Rim Greek Key Design Champagne Flute Brandy Highball Whiskey Wine Glass Drinkware Set Home Bar Barware</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Wholesale Luxury Gold Rim Greek Key Glassware Set Custom Logo Highball Whiskey Stemless Wine Glass Cup for Hotel Wedding</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Icon Custom Lead-free Crystal Red Wine & Champagne Glass Goblets</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">2.2 Everyday 3D</span></td></tr>
+            <tr><td>Bulk Wholesale Custom Engraved Crystal Wine Glass Gold Rim Holly Pattern Logo Etched Red Wine Goblet Gift Box Set</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">2.1 Christmas</span></td></tr>
+            <tr><td>Wholesale Luxury Crystal Diamond Shaped Short Stem 14oz Custom logo Gold Rim Good Modern Brandy Goblet Red Wine Glass</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Retro bar glassware Red Wine Glass Cups champagne Flute Sets with Personalized logo for Weddings Gift</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Luxury Fancy Irregular Stemmed Premium Sparkling Curved Stem Creative Crystal champagne Glasses Gift Wine Glass Set</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>High Quality Personalised 480 ml Lead Free Crystal Glass ultra Thin Wedding Flute champagne Bulk Slanted Wine Glasses</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>RTS Stock Wholesale Luxury Elegant Crystal Red Wine Glass Goblet Long Stem for Wedding Party Restaurant Bar Premium Glassware</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Luxury No Lead Crystal Art Deco Edge Gold Rimmed Glass champagne Flutes Wine Glasses Stemless</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Custom Logo Unique Wedding bar Modern Ribbed Hammered Lead Free Crystal Stemless Prosecco Glassware Champagne Flutes Glasses</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Silver Trim Platinum Rim Lead Free Crystal Champagne Flute Brandy Snifter Collins Old Fashioned Wine Glass Goblets Set</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Vintage Crystal Etched Gold Rimmed Pattern champagne Flutes Cognac Cooler Cocktail Wine Glasses with Thick Gold Band Bottom</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Bulk clear Wholesale Glass champagne Flutes Stemless Wine Glasses Cup Goblets Set for Wedding</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>700ml OEM High Quality Original Personalised Classic Long Stem Oversized Burgundy Wedding extra Large Big Giant Wine Glass</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Premium Wedding Stemmed Wholesale Beautiful Designer Handcraft Long Stem Hand Blown Customized Red Wine Glasses</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Handmade Flat Bottom clear Thin Stem Personalized Goblet champagne Glasses Flutes Custom Luxury Crystal Coupe Red Wine Glass</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Customized Pattern Silver Gold Rimmed Wine Glass Cups for Drinking Water Whiskey</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Custom Crystal Bohemia Wedding Wine Drinking Glasses with Stemless Gold Rim Wine Glass Cups Tumbler</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Burgundy Hand Blown Drinkware Fine logo Personalized ultra Thin Fancy Custom Glass Luxury bar Crystal champagne Wine Glasses</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Stemless Wine Glass Set With Gift Box Personalized Decal Printing Crystal Egg Cup Promotional Bulk</td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">1.1 Stemware</span></td><td></td></tr>
+
+            <!-- 1.2 Whiskey -->
+            <tr class="sub-cat-row"><td colspan="3">1.2 Whiskey & Rocks Glasses (威士忌/烈酒杯)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #2</span> Wholesale Bohemia Hand Cut to Clear Cased Crystal Color Overlay Glass | Edo Kiriko Style</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>OEM ODM Custom Hand Blown Lead Free Crystal Borosilicate Glass Volcano Style Whiskey Rocks Glass with 3D Mountain Base</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Custom Logo Luxury Crystal Whiskey Glass Tumbler Wholesale Vintage Cut Etched Flower Old Fashioned Rocks Cup Gift Box Set</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Custom Logo Rocking Tilted Whiskey Cocktail Tumbler Unique Shape Heavy Base Wholesale Corporate Gift Set Manufacturer</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Wholesale Manufacturer Custom Logo Etched Lead-Free Crystal Rocking Whiskey Rocks Glass Tumbler Highball Barware Set</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Old Fashioned Whiskey Glass Set With Chilling Stones Luxury Gift Box Promotional Barware Tumbler</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo 10oz Vintage Embossed Crystal Whiskey Glass Tumbler Set Heavy Base Hobnail Ribbed Diamond Pattern</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Nordic Heavy Base Whiskey Glass Tumbler Lead Free Crystal Barware for Restaurant Bar Corporate Gift</td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">1.2 Whiskey</span></td><td></td></tr>
+
+            <!-- 1.3 Craft Beer -->
+            <tr class="sub-cat-row"><td colspan="3">1.3 Craft Beer Pints & Steins (精酿/高球杯/扎啤杯)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #4</span> Wholesale Matte Black Pint Glass | Electroplated Inner Color</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom 500ml Modern Japanese Style Hammered Ribbed Swirl Stemless IPA Sensory Drinking Craft Beer Tulip Glass Tumbler</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Custom Logo Durable Crystal Clear Heavy Base Bar Craft Large Capacity Pilsner Weizen Tulip Pub Wheat Beer Drinking Glass</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom 10oz 15oz Premium Heavy Base Faceted Diamond-Pattern Clear Textured Pint Pilsner Beer Drinking Glasses</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Nordic Bell Pedestal Crystal Whiskey Glass for Craft Beer Cocktail Coffee Bar Restaurant</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>OEM Custom Logo 16oz Belgian Style Stemmed Tulip Chalice Pint Weizen Stange Classic Pilsner Beer Glasses for Lagers IPAs Ales</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo IPA Tulip Nonic Pint Weizen Crystal Craft Beer Glassware for Brewery Pub Bar Restaurant Drinkware</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Nonic Pint Glass Tumbler Stackable Bar Restaurant Beer Iced Coffee Cup Drinkware Gift Set Manufacturer</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Glass Tumbler Manufacturer Heavy Base Barware for Restaurant Hotel Promotional Gift Drinking Glasses Set</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Heavy Base Highball Tumbler Rocks Glass Set for Restaurant Bar Hotel Cocktail Whiskey Drinkware</td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">1.3 Craft Beer</span></td><td></td></tr>
+
+            <!-- 1.4 Shot & Tasting -->
+            <tr class="sub-cat-row"><td colspan="3">1.4 Shot Glasses & Tasting Glasses (一口杯/品鉴杯)</td></tr>
+            <tr><td>Wholesale Custom Logo 95ml Embossed Vintage Whiskey Taster Tumbler Manufacturer Heavy Base Promotional Gift Box Set</td><td><span class="tag tag-primary">1.4 Shot & Tasting</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Wholesale Custom 1.5oz Shot Glass Set Retro Cartoon Elegant Print Tequila Vodka Cup Gift Box OEM Barware Bulk Factory</td><td><span class="tag tag-primary">1.4 Shot & Tasting</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Crystal Brandy Snifter Tulip Cognac Glass Set With Luxury Gift Box Packaging for Promotional Gift</td><td><span class="tag tag-primary">1.4 Shot & Tasting</span></td><td><span class="tag tag-secondary">1.1 Stemware</span></td></tr>
+            <tr><td>Wholesale Custom Logo Lead Free Crystal Whiskey Tasting Bourbon Glass Professional Nosing Glassware Manufacturer for Scotch</td><td><span class="tag tag-primary">1.4 Shot & Tasting</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Heavy Base Shot Glass Whiskey Taster Tumbler Lead-Free Restaurant Barware Promotional Corporate Gift</td><td><span class="tag tag-primary">1.4 Shot & Tasting</span></td><td></td></tr>
+
+            <!-- 1.5 Decanters & Novelty -->
+            <tr class="sub-cat-row"><td colspan="3">1.5 Decanters, Carafes & Fantasy Goblets (冷水壶/奇特酒具)</td></tr>
+            <tr><td>Wholesale Custom Medieval Dragon Claw Goblet Retro Resin Base Amber Glass Cup Fantasy Gift Box Set Viking Wine Chalice</td><td><span class="tag tag-primary">1.5 Novelty Sets</span></td><td><span class="tag tag-secondary">1.1 Stemware</span></td></tr>
+
+            <!-- 1.6 Embedded Sports Novelty -->
+            <tr class="sub-cat-row"><td colspan="3">1.6 Embedded Sports Novelty (赛事周边嵌入式酒具) <span class="badge-new">NEW</span></td></tr>
+            <tr class="core-product"><td><span class="badge-star">Viral Item</span> Custom Sports Embedded Pint Glass (Hyper-Realistic Golf Ball / Football / Bullet Replica)</td><td><span class="tag tag-primary">1.6 Embedded Novelty</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <!-- ========================================================= -->
+            <!-- 🎄 CATEGORY 2: 3D ICON & HOLIDAY GLASSWARE                -->
+            <!-- ========================================================= -->
+            <tr style="background-color: #1E293B; color: #fff;">
+                <td colspan="3" style="font-size: 15px; padding: 15px 20px; letter-spacing: 0.5px;"><strong>🎄 Category 2: 3D Icon & Holiday Glassware</strong></td>
+            </tr>
+
+            <!-- 2.1 Christmas & Halloween -->
+            <tr class="sub-cat-row"><td colspan="3">2.1 Christmas & Halloween Collections (圣诞/万圣节)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #5</span> Wholesale Holiday Icon Glass Cup Set | Gold Rim 3D Charm Tumblers</td><td><span class="tag tag-primary">2.1 Christmas</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Ready to Ship Christmas Fruit Raised 3D Enamel Applique Motif Gold Rim Highball Cooler Double Old Fashioned Rocks Tumbler Glass</td><td><span class="tag tag-primary">2.1 Christmas</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Wholesale Custom 3D Embossed Halloween Pumpkin Ghost Glass Beer Can Cup With Bamboo Lid Straw Set Bulk Logo Iced Coffee</td><td><span class="tag tag-primary">2.1 Halloween</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Wholesale Speckled Glass Crystal clear Customized Handmade Collins Highball Glass Tumbler Set 300ml</td><td><span class="tag tag-primary">2.1 Halloween</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Personalised Drinking Confetti Water Blue Highball Glasses Cocktail Tumbler Glass Cup logo Kristall</td><td><span class="tag tag-primary">2.1 Halloween</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Metallic Affixed 3D Decorative Enamel Emblem Icon Attached Red Wine Drinking Champagne Flute Rocks Highball Collins Glass</td><td><span class="tag tag-primary">2.1 Christmas</span></td><td><span class="tag tag-secondary">1.1 Stemware</span><span class="tag tag-secondary">2.2 Everyday 3D</span></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">2.1 Holiday</span></td><td></td></tr>
+
+            <!-- 2.2 Everyday 3D Enamel Appliqué -->
+            <tr class="sub-cat-row"><td colspan="3">2.2 Everyday 3D Enamel Appliqué (日常 3D 贴花)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #1</span> Wholesale Custom Icon Glassware | 3D Charm Juice Glasses in Bulk</td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Iconic Drinking Beer Can Glass Tumbler with Bamboo Lid and Straw</td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Charm Inlay glassware 500ml Custom logo Beer Glass Mug with Handle</td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td>Icon Crystal Iconic Juice Transparent Rocks clear Customized Cute Whisky Crystal Water Whiskey Drinking Glass Cups</td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td><span class="tag tag-secondary">1.2 Whiskey</span></td></tr>
+            <tr><td>Ready to Ship Gold Rim 3D Enamel Raised Design Barware Cocktail Water Highball Drinking Glass Tumbler Cup for Gift</td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td><span class="tag tag-secondary">1.3 Craft Beer</span></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">2.2 Everyday 3D</span></td><td></td></tr>
+
+            <!-- 2.3 Inner Figurine Glasses -->
+            <tr class="sub-cat-row"><td colspan="3">2.3 3D Inner Figurine Glasses (杯底内含立体动物)</td></tr>
+            <tr><td>OEM 300ml 500ml Custom Christmas Gift Hand Blown Borosilicate 3D Drinking Glass Cup with Turtle Cute Animal Figurine Inside</td><td><span class="tag tag-primary">2.3 Inner Figurine</span></td><td><span class="tag tag-secondary">2.1 Christmas</span></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">2.3 Inner Figurine</span></td><td></td></tr>
+
+
+            <!-- ========================================================= -->
+            <!-- 🕯️ CATEGORY 3: LUXURY CANDLE VESSELS & HOME DECOR           -->
+            <!-- ========================================================= -->
+            <tr style="background-color: #1E293B; color: #fff;">
+                <td colspan="3" style="font-size: 15px; padding: 15px 20px; letter-spacing: 0.5px;"><strong>🕯️ Category 3: Luxury Candle Vessels & Home Decor</strong></td>
+            </tr>
+
+            <!-- 3.1 Electroplated & Matte Candle Jars -->
+            <tr class="sub-cat-row"><td colspan="3">3.1 Electroplated & Matte Candle Jars (电镀与哑光蜡烛罐)</td></tr>
+            <tr><td>Wholesale 16oz Matte Colored Glass Candle Jars With Bamboo Lids Round Bottom Bulk Empty Luxury Candle Vessels Custom Logo</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Matte Frosted Glass Candle Jars Empty Votive Holder Bulk Set for Candle Making 300ml 210ml Luxury</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Luxury Matte Black White Glass Candle Jars Gold Inside Electroplated Vessel With Wooden Lids Bulk</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo 10oz Colored Glass Candle Jars Luxury Heavy Base Aromatherapy Vessel Bulk Private Label Supplier</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+            <tr><td>Wholesale Luxury Matte Red Glass Candle Jars Gold Inside Electroplated Custom Logo Private Label Empty Vessels Bulk</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Gradient Matte Frosted Glass Candle Jar Electroplated Silver Inner Empty Vessel Luxury Candle Making</td><td><span class="tag tag-primary">3.1 Electro/Matte Jars</span></td><td></td></tr>
+
+            <!-- 3.2 Decal & Printed Candle Vessels -->
+            <tr class="sub-cat-row"><td colspan="3">3.2 Decal & Printed Candle Vessels (印花与贴花蜡烛罐)</td></tr>
+            <tr class="core-product"><td><span class="badge-star">Core #3</span> Wholesale Luxury Empty Candle Vessels | Custom Floral & Gold Foil Decal</td><td><span class="tag tag-primary">3.2 Decal/Printed</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Decal Printed Glass Candle Jar Tumbler 17oz Nordic Tropical Flamingo Floral Pattern Bulk Gift Set OEM</td><td><span class="tag tag-primary">3.2 Decal/Printed</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Pattern Printed Glass Candle Holder Set Daisy Heart Leaf Design Large Planter Vase Bulk OEM Logo 1430ml</td><td><span class="tag tag-primary">3.2 Decal/Printed</span></td><td></td></tr>
+            <tr><td>Custom Luxury Empty Glass Candle Jars Wholesale Bulk Floral Decal Gold Foil Printed Candle Vessels for Candle Making</td><td><span class="tag tag-primary">3.2 Decal/Printed</span></td><td></td></tr>
+            <tr><td><em>* Includes all respective duplicate (-1) SKU uploads for the above items.</em></td><td><span class="tag tag-primary">3.2 Decal/Printed</span></td><td></td></tr>
+
+            <!-- 3.3 Embossed Holders & Home Fragrance -->
+            <tr class="sub-cat-row"><td colspan="3">3.3 Embossed Holders & Home Fragrance (浮雕烛台与香薰摆件)</td></tr>
+            <tr><td>Wholesale Custom Stained Glass Effect Candle Holder Geometric Diamond Pattern Hand Painted Jar Wedding Home Decor Bulk</td><td><span class="tag tag-primary">3.3 Embossed/Fragrance</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo 3oz Embossed Tiki Face Diamond Pattern Glass Candle Holder Votive Shot Glass Bulk Gift Box Set</td><td><span class="tag tag-primary">3.3 Embossed/Fragrance</span></td><td><span class="tag tag-secondary">1.4 Shot & Tasting</span></td></tr>
+            <tr><td>Luxury 200ml Gradient Colored Glass Reed Diffuser Bottle Wholesale Custom Logo Home Fragrance Aromatherapy Container</td><td><span class="tag tag-primary">3.3 Embossed/Fragrance</span></td><td></td></tr>
+            <tr><td>Wholesale Custom Logo Glass Hourglass Sand Timer Gift Box Set 30 Minute Sand Clock Office Decor Corporate Promotional</td><td><span class="tag tag-primary">3.3 Embossed/Fragrance</span></td><td></td></tr>
+            
+            <!-- 需特殊处理的 1000ml 香薰瓶 -->
+            <tr style="background-color: #fff0f0;">
+                <td style="border-left: 4px solid #EF4444;">
+                    <span style="background-color: #EF4444; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-right: 6px; font-weight: bold;">ACTION REQ</span>
+                    Wholesale Custom 1000ml Flat Glass Flask Bottle Full Wrap Decal Print Beverage Juice Spirit Container Gift Set OEM Bulk
+                </td>
+                <td><span class="tag tag-primary" style="background-color: #FEF2F2; color: #B91C1C; border-color: #FCA5A5;">3.3 Embossed/Fragrance</span></td>
+                <td><span class="tag tag-secondary">To be updated as Reed Diffuser</span></td>
+            </tr>
+
+            <!-- 3.4 Borosilicate Double-Wall Vessels -->
+            <tr class="sub-cat-row"><td colspan="3">3.4 Borosilicate Double-Wall Vessels (高硼硅双层香氛罐) <span class="badge-new">NEW</span></td></tr>
+            <tr>
+                <td>Wholesale Luxury Double-Wall Borosilicate Glass Candle Vessel / Floating Inner Diffuser Bottle</td>
+                <td><span class="tag tag-primary">3.4 Double-Wall Fragrance</span></td>
+                <td><span class="tag tag-secondary">High-end Decor</span></td>
+            </tr>
+            <!-- ========================================================= -->
+            <!-- ☕ CATEGORY 4: PREMIUM CAFE & LIFESTYLE DRINKWARE           -->
+            <!-- ========================================================= -->
+            <tr style="background-color: #1E293B; color: #fff;">
+                <td colspan="3" style="font-size: 15px; padding: 15px 20px; letter-spacing: 0.5px;"><strong>☕ Category 4: Premium Cafe & Lifestyle Drinkware</strong></td>
+            </tr>
+
+            <!-- 4.1 High-End Water & Beverage Tumblers -->
+            <tr class="sub-cat-row"><td colspan="3">4.1 High-End Water & Beverage Tumblers (星巴克级水杯/冷萃杯) <span class="badge-new">NEW</span></td></tr>
+            <tr>
+                <td>Clear Cups Glassware Water Glass Drinking Cup Tumbler for Home and Hotel Drinking Glasses</td>
+                <td><span class="tag tag-primary">4.1 Water/Beverage</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Clear Cups Glassware Water Glass Drinking Cup Tumbler for Home and Hotel Drinking Glasses (Duplicate -1)</td>
+                <td><span class="tag tag-primary">4.1 Water/Beverage</span></td>
+                <td></td>
+            </tr>
+            <tr class="core-product">
+                <td><span class="badge-star">OEM Custom</span> Premium Clear Glass Water Tumbler / Iced Beverage Cup (Starbucks Quality Standard)</td>
+                <td><span class="tag tag-primary">4.1 Water/Beverage</span></td>
+                <td><span class="tag tag-secondary">Corporate Gift</span></td>
+            </tr>
+
+            <!-- 4.2 Borosilicate Double-Wall Cups -->
+            <tr class="sub-cat-row"><td colspan="3">4.2 Borosilicate Double-Wall Coffee/Tea Cups (高硼硅双层咖啡/茶杯) <span class="badge-new">NEW</span></td></tr>
+            <tr>
+                <td>Custom Logo Double Wall Glass Cup Logo Print Custom Beer Glasses Supplier <em>(Moved to Double-Wall)</em></td>
+                <td><span class="tag tag-primary">4.2 Double-Wall Cafe</span></td>
+                <td><span class="tag tag-secondary">1.3 Craft Beer</span></td>
+            </tr>
+            <tr class="core-product">
+                <td><span class="badge-star">Factory Strength</span> Wholesale Borosilicate Double-Wall Glass Coffee Mug (Thermal Insulated)</td>
+                <td><span class="tag tag-primary">4.2 Double-Wall Cafe</span></td>
+                <td><span class="tag tag-secondary">4.3 Mugs with Handle</span></td>
+            </tr>
+            <tr>
+                <td>OEM Custom Borosilicate Double Wall Espresso / Latte Cup set</td>
+                <td><span class="tag tag-primary">4.2 Double-Wall Cafe</span></td>
+                <td></td>
+            </tr>
+
+            <!-- 4.3 Glass Mugs & Teacups (With Handle) -->
+            <tr class="sub-cat-row"><td colspan="3">4.3 Glass Mugs & Teacups with Handle (带把手马克杯/茶杯) <span class="badge-new">NEW</span></td></tr>
+            <tr>
+                <td>Heavy Base Clear Glass Coffee Mug / Minimalist Glass Teacup with Handle</td>
+                <td><span class="tag tag-primary">4.3 Mugs & Teacups</span></td>
+                <td><span class="tag tag-secondary">4.1 Water/Beverage</span></td>
+            </tr>
+        </tbody>
+    </table>

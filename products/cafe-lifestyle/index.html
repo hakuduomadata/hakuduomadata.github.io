@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- [SEO TDK 占位符] 在这里填入每个页面的 Title 和 Description -->
+<title>[SEO Title] Wholesale Custom Glassware | Ruixin Glass</title>
+<meta name="description" content="[SEO Description] Source premium B2B glassware direct from the manufacturer...">
+
+<style>
+    :root {
+        --primary-dark: #1E293B;
+        --accent-gold: #B78C43;
+        --bg-light: #F8FAFC;
+        --border-light: #E2E8F0;
+        --text-main: #334155;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-main);
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 顶部面包屑区 (极简导航) */
+    .top-bar {
+        background-color: #fff;
+        padding: 15px 40px;
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .breadcrumbs {
+        font-size: 13px;
+        color: #64748B;
+    }
+    
+    .breadcrumbs a {
+        color: var(--primary-dark);
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .breadcrumbs a:hover { color: var(--accent-gold); }
+
+    /* 主体布局：左侧 Catalog + 右侧 Content */
+    .main-container {
+        display: flex;
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 0 20px;
+        gap: 30px;
+    }
+
+    /* 左侧侧边栏目录 */
+    .sidebar-catalog {
+        width: 280px;
+        flex-shrink: 0;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        border: 1px solid var(--border-light);
+        align-self: flex-start;
+        position: sticky;
+        top: 20px;
+    }
+
+    .sidebar-catalog h3 {
+        font-size: 18px;
+        color: var(--primary-dark);
+        border-bottom: 2px solid var(--accent-gold);
+        padding-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .catalog-group { margin-bottom: 20px; }
+    .catalog-title {
+        font-weight: 600;
+        color: var(--primary-dark);
+        font-size: 14px;
+        margin-bottom: 8px;
+        display: block;
+        text-decoration: none;
+    }
+    
+    .catalog-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .catalog-list li a {
+        display: block;
+        padding: 6px 0 6px 12px;
+        color: #64748B;
+        text-decoration: none;
+        font-size: 13px;
+        transition: all 0.2s;
+        border-left: 2px solid transparent;
+    }
+    
+    .catalog-list li a:hover, .catalog-list li a.active {
+        color: var(--accent-gold);
+        border-left-color: var(--accent-gold);
+        background-color: #fdfbf7;
+    }
+
+    /* 右侧主内容区 */
+    .content-area {
+        flex: 1;
+    }
+
+    /* SEO 描述区块 (黄金前5秒坑位) */
+    .seo-description-block {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border-left: 4px solid var(--accent-gold);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .seo-description-block h1 {
+        margin: 0 0 15px 0;
+        font-size: 26px;
+        color: var(--primary-dark);
+    }
+
+    .seo-description-block p {
+        margin: 0 0 15px 0;
+        font-size: 15px;
+        color: #475569;
+        line-height: 1.7;
+    }
+
+    /* 产品卡片阵列 (Grid) */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+
+    .product-card {
+        background: #fff;
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        border-color: var(--accent-gold);
+    }
+
+    .card-img-placeholder {
+        background-color: #F1F5F9;
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94A3B8;
+        font-size: 12px;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .card-info {
+        padding: 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-sku {
+        font-size: 11px;
+        color: #94A3B8;
+        margin-bottom: 5px;
+    }
+
+    .card-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary-dark);
+        margin: 0 0 15px 0;
+        line-height: 1.4;
+    }
+
+    .card-btn {
+        margin-top: auto;
+        display: inline-block;
+        text-align: center;
+        padding: 8px 0;
+        background-color: #fdfbf7;
+        color: var(--accent-gold);
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid #f1e2c3;
+        border-radius: 4px;
+    }
+    
+    .product-card:hover .card-btn {
+        background-color: var(--accent-gold);
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+
+    <!-- 顶部极简面包屑 -->
+    <div class="top-bar">
+        <div class="breadcrumbs">
+            <a href="../../index.html">🏠 Home</a> <span> / </span>
+            <a href="index.html">[Main Category Name]</a> <span> / </span>
+            <span style="color: var(--primary-dark); font-weight: 600;">[Sub-Category Name]</span>
+        </div>
+        <div style="font-weight:bold; color:var(--primary-dark); font-size:18px;">RUIXIN GLASS</div>
+    </div>
+
+    <div class="main-container">
+        
+        <!-- 左侧侧边栏 (Sidebar Catalog) -->
+        <aside class="sidebar-catalog">
+            <h3>Product Catalog</h3>
+            
+            <div class="catalog-group">
+                <a href="../luxury-barware/index.html" class="catalog-title">🍷 Luxury Barware</a>
+                <ul class="catalog-list">
+                    <!-- class="active" 用于高亮当前所在页面 -->
+                    <li><a href="../luxury-barware/stemware-goblets.html" class="active">1.1 Stemware & Goblets</a></li>
+                    <li><a href="../luxury-barware/whiskey-rocks.html">1.2 Whiskey & Rocks</a></li>
+                    <li><a href="../luxury-barware/craft-beer-pints.html">1.3 Craft Beer Pints</a></li>
+                    <li><a href="../luxury-barware/shot-tasting.html">1.4 Shot & Tasting</a></li>
+                    <li><a href="../luxury-barware/decanters-novelty.html">1.5 Decanters & Novelty</a></li>
+                    <li><a href="../luxury-barware/sports-embedded.html">1.6 Embedded Sports</a></li>
+                </ul>
+            </div>
+
+            <div class="catalog-group">
+                <a href="../3d-holiday/index.html" class="catalog-title">🎄 3D Icon & Holiday</a>
+                <ul class="catalog-list">
+                    <li><a href="../3d-holiday/christmas-halloween.html">2.1 Christmas & Halloween</a></li>
+                    <li><a href="../3d-holiday/everyday-3d.html">2.2 Everyday 3D Appliqué</a></li>
+                    <li><a href="../3d-holiday/inner-figurine.html">2.3 3D Inner Figurine</a></li>
+                </ul>
+            </div>
+
+            <div class="catalog-group">
+                <a href="../candle-vessels/index.html" class="catalog-title">🕯️ Candle Vessels</a>
+                <ul class="catalog-list">
+                    <li><a href="../candle-vessels/electroplated-matte.html">3.1 Electroplated & Matte</a></li>
+                    <li><a href="../candle-vessels/decal-printed-jars.html">3.2 Decal & Printed</a></li>
+                    <li><a href="../candle-vessels/embossed-fragrance.html">3.3 Embossed & Fragrance</a></li>
+                    <li><a href="../candle-vessels/double-wall-vessels.html">3.4 Double-Wall Vessels</a></li>
+                </ul>
+            </div>
+
+            <div class="catalog-group">
+                <a href="../cafe-lifestyle/index.html" class="catalog-title">☕ Cafe & Lifestyle</a>
+                <ul class="catalog-list">
+                    <li><a href="../cafe-lifestyle/water-beverage.html">4.1 Water & Beverage</a></li>
+                    <li><a href="../cafe-lifestyle/double-wall-cafe.html">4.2 Double-Wall Cafe</a></li>
+                    <li><a href="../cafe-lifestyle/mugs-teacups.html">4.3 Mugs & Teacups</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 右侧主内容区 -->
+        <main class="content-area">
+            
+            <!-- [占位符] SEO/GEO 文案区 -->
+            <div class="seo-description-block">
+                <h1>[H1] Enter the Sub-Category Main Keyword Here</h1>
+                <p>
+                    <strong>[GEO Intro]</strong> Write a 50-word direct answer explaining what this product category is and its B2B value proposition. This is the "Golden First 5 Seconds" designed for Google AI Overviews.
+                </p>
+                <p>
+                    <strong>[B2B Selling Points]</strong> Mention MOQ (e.g., starts at 1000pcs), customization options (OEM/ODM, laser engraving, decal), safety standards (FDA/LFGB compliant lead-free crystal), and packaging solutions.
+                </p>
+            </div>
+
+            <!-- [占位符] 产品阵列区 -->
+            <div class="product-grid">
+                
+                <!-- 卡片 1 (模板) -->
+                <a href="placeholder-product-page.html" class="product-card">
+                    <div class="card-img-placeholder">[Product Image 800x800]</div>
+                    <div class="card-info">
+                        <span class="card-sku">SKU: RX-SAMPLE-001</span>
+                        <h3 class="card-title">Insert Exact Product Name from CSV Here</h3>
+                        <span class="card-btn">View Details / Inquire</span>
+                    </div>
+                </a>
+
+                <!-- 卡片 2 (模板) -->
+                <a href="placeholder-product-page.html" class="product-card">
+                    <div class="card-img-placeholder">[Product Image 800x800]</div>
+                    <div class="card-info">
+                        <span class="card-sku">SKU: RX-SAMPLE-002</span>
+                        <h3 class="card-title">Insert Exact Product Name from CSV Here</h3>
+                        <span class="card-btn">View Details / Inquire</span>
+                    </div>
+                </a>
+                
+                <!-- 您可以在此处无限复制上面的 <a class="product-card">...</a> 来填充产品 -->
+
+            </div>
+        </main>
+
+    </div>
+</body>
+</html>

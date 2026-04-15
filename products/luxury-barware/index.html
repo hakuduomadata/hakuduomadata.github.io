@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- [SEO TDK 占位符] 在这里填入每个页面的 Title 和 Description -->
+<!-- [真实生效的 Meta 标签] 实际上线时后台会自动生成，这里保留做测试 -->
 <title>[SEO Title] Wholesale Custom Glassware | Ruixin Glass</title>
 <meta name="description" content="[SEO Description] Source premium B2B glassware direct from the manufacturer...">
 
@@ -16,203 +16,58 @@
         --text-main: #334155;
     }
 
-    body {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background-color: var(--bg-light);
-        color: var(--text-main);
-        margin: 0;
-        padding: 0;
-    }
+    body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-light); color: var(--text-main); margin: 0; padding: 0; }
 
-    /* 顶部面包屑区 (极简导航) */
-    .top-bar {
-        background-color: #fff;
-        padding: 15px 40px;
-        border-bottom: 1px solid var(--border-light);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .breadcrumbs {
-        font-size: 13px;
-        color: #64748B;
-    }
-    
-    .breadcrumbs a {
-        color: var(--primary-dark);
-        text-decoration: none;
-        font-weight: 500;
-    }
-    
+    /* 顶部面包屑区 */
+    .top-bar { background-color: #fff; padding: 15px 40px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+    .breadcrumbs { font-size: 13px; color: #64748B; }
+    .breadcrumbs a { color: var(--primary-dark); text-decoration: none; font-weight: 500; }
     .breadcrumbs a:hover { color: var(--accent-gold); }
 
-    /* 主体布局：左侧 Catalog + 右侧 Content */
-    .main-container {
-        display: flex;
-        max-width: 1400px;
-        margin: 30px auto;
-        padding: 0 20px;
-        gap: 30px;
-    }
+    /* 主体布局 */
+    .main-container { display: flex; max-width: 1400px; margin: 30px auto; padding: 0 20px; gap: 30px; }
 
-    /* 左侧侧边栏目录 */
-    .sidebar-catalog {
-        width: 280px;
-        flex-shrink: 0;
-        background: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        border: 1px solid var(--border-light);
-        align-self: flex-start;
-        position: sticky;
-        top: 20px;
-    }
-
-    .sidebar-catalog h3 {
-        font-size: 18px;
-        color: var(--primary-dark);
-        border-bottom: 2px solid var(--accent-gold);
-        padding-bottom: 10px;
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-
+    /* 左侧侧边栏 */
+    .sidebar-catalog { width: 280px; flex-shrink: 0; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid var(--border-light); align-self: flex-start; position: sticky; top: 20px; }
+    .sidebar-catalog h3 { font-size: 18px; color: var(--primary-dark); border-bottom: 2px solid var(--accent-gold); padding-bottom: 10px; margin-top: 0; margin-bottom: 15px; }
     .catalog-group { margin-bottom: 20px; }
-    .catalog-title {
-        font-weight: 600;
-        color: var(--primary-dark);
-        font-size: 14px;
-        margin-bottom: 8px;
-        display: block;
-        text-decoration: none;
-    }
-    
-    .catalog-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .catalog-list li a {
-        display: block;
-        padding: 6px 0 6px 12px;
-        color: #64748B;
-        text-decoration: none;
-        font-size: 13px;
-        transition: all 0.2s;
-        border-left: 2px solid transparent;
-    }
-    
-    .catalog-list li a:hover, .catalog-list li a.active {
-        color: var(--accent-gold);
-        border-left-color: var(--accent-gold);
-        background-color: #fdfbf7;
-    }
+    .catalog-title { font-weight: 600; color: var(--primary-dark); font-size: 14px; margin-bottom: 8px; display: block; text-decoration: none; }
+    .catalog-list { list-style: none; padding: 0; margin: 0; }
+    .catalog-list li a { display: block; padding: 6px 0 6px 12px; color: #64748B; text-decoration: none; font-size: 13px; transition: all 0.2s; border-left: 2px solid transparent; }
+    .catalog-list li a:hover, .catalog-list li a.active { color: var(--accent-gold); border-left-color: var(--accent-gold); background-color: #fdfbf7; }
 
     /* 右侧主内容区 */
-    .content-area {
-        flex: 1;
-    }
+    .content-area { flex: 1; }
 
-    /* SEO 描述区块 (黄金前5秒坑位) */
-    .seo-description-block {
-        background: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        margin-bottom: 30px;
-        border-left: 4px solid var(--accent-gold);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    }
+    /* ========================================= */
+    /* ★ 新增：虚拟明文 TDK 后台复制区样式 ★        */
+    /* ========================================= */
+    .admin-seo-panel { background: #F1F5F9; border: 2px dashed #94A3B8; padding: 20px; margin-bottom: 30px; border-radius: 8px; font-family: 'Consolas', monospace; position: relative; }
+    .admin-seo-panel::before { content: 'ADMIN VIEW ONLY'; position: absolute; top: -12px; left: 20px; background: #EF4444; color: #fff; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; font-family: sans-serif; }
+    .admin-seo-item { margin-bottom: 15px; }
+    .admin-seo-item:last-child { margin-bottom: 0; }
+    .admin-seo-label { display: flex; justify-content: space-between; font-weight: bold; color: #334155; font-size: 13px; margin-bottom: 5px; font-family: sans-serif;}
+    .char-count { color: #64748B; font-weight: normal; font-size: 12px; }
+    .copy-box { background: #fff; border: 1px solid #CBD5E1; padding: 10px 15px; border-radius: 4px; color: #0F172A; font-size: 14px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); user-select: all; }
+    .copy-box.url-box { color: #2563EB; }
 
-    .seo-description-block h1 {
-        margin: 0 0 15px 0;
-        font-size: 26px;
-        color: var(--primary-dark);
-    }
+    /* SEO/GEO 文案区块 */
+    .seo-description-block { background: #fff; padding: 30px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid var(--accent-gold); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .seo-description-block h1 { margin: 0 0 15px 0; font-size: 26px; color: var(--primary-dark); }
+    .seo-description-block h2 { margin: 0 0 10px 0; font-size: 18px; color: var(--primary-dark); }
+    .seo-description-block p { margin: 0 0 15px 0; font-size: 14px; color: #475569; line-height: 1.7; }
+    .seo-description-block ul { margin: 0 0 15px 0; padding-left: 20px; font-size: 14px; color: #475569; line-height: 1.7; }
 
-    .seo-description-block p {
-        margin: 0 0 15px 0;
-        font-size: 15px;
-        color: #475569;
-        line-height: 1.7;
-    }
-
-    /* 产品卡片阵列 (Grid) */
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 20px;
-    }
-
-    .product-card {
-        background: #fff;
-        border: 1px solid var(--border-light);
-        border-radius: 8px;
-        overflow: hidden;
-        transition: transform 0.2s, box-shadow 0.2s;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-        border-color: var(--accent-gold);
-    }
-
-    .card-img-placeholder {
-        background-color: #F1F5F9;
-        height: 240px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #94A3B8;
-        font-size: 12px;
-        border-bottom: 1px solid var(--border-light);
-    }
-
-    .card-info {
-        padding: 15px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .card-sku {
-        font-size: 11px;
-        color: #94A3B8;
-        margin-bottom: 5px;
-    }
-
-    .card-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--primary-dark);
-        margin: 0 0 15px 0;
-        line-height: 1.4;
-    }
-
-    .card-btn {
-        margin-top: auto;
-        display: inline-block;
-        text-align: center;
-        padding: 8px 0;
-        background-color: #fdfbf7;
-        color: var(--accent-gold);
-        font-size: 13px;
-        font-weight: 600;
-        border: 1px solid #f1e2c3;
-        border-radius: 4px;
-    }
-    
-    .product-card:hover .card-btn {
-        background-color: var(--accent-gold);
-        color: #fff;
-    }
+    /* 产品卡片阵列 */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .product-card { background: #fff; border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--accent-gold); }
+    .card-img-placeholder { background-color: #F1F5F9; height: 240px; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-size: 12px; border-bottom: 1px solid var(--border-light); background-size: cover; background-position: center; }
+    .card-info { padding: 15px; flex: 1; display: flex; flex-direction: column; }
+    .card-sku { font-size: 11px; color: #94A3B8; margin-bottom: 5px; font-family: monospace; }
+    .card-title { font-size: 14px; font-weight: 600; color: var(--primary-dark); margin: 0 0 15px 0; line-height: 1.4; }
+    .card-btn { margin-top: auto; display: block; text-align: center; padding: 8px 0; background-color: #fdfbf7; color: var(--accent-gold); font-size: 13px; font-weight: 600; border: 1px solid #f1e2c3; border-radius: 4px; }
+    .product-card:hover .card-btn { background-color: var(--accent-gold); color: #fff; }
 </style>
 </head>
 <body>
@@ -221,8 +76,8 @@
     <div class="top-bar">
         <div class="breadcrumbs">
             <a href="../../index.html">🏠 Home</a> <span> / </span>
-            <a href="index.html">[Main Category Name]</a> <span> / </span>
-            <span style="color: var(--primary-dark); font-weight: 600;">[Sub-Category Name]</span>
+            <a href="index.html">[Main Category]</a> <span> / </span>
+            <span style="color: var(--primary-dark); font-weight: 600;">[Sub-Category]</span>
         </div>
         <div style="font-weight:bold; color:var(--primary-dark); font-size:18px;">RUIXIN GLASS</div>
     </div>
@@ -236,7 +91,6 @@
             <div class="catalog-group">
                 <a href="../luxury-barware/index.html" class="catalog-title">🍷 Luxury Barware</a>
                 <ul class="catalog-list">
-                    <!-- class="active" 用于高亮当前所在页面 -->
                     <li><a href="../luxury-barware/stemware-goblets.html">1.1 Stemware & Goblets</a></li>
                     <li><a href="../luxury-barware/whiskey-rocks.html">1.2 Whiskey & Rocks</a></li>
                     <li><a href="../luxury-barware/craft-beer-pints.html">1.3 Craft Beer Pints</a></li>
@@ -277,42 +131,107 @@
 
         <!-- 右侧主内容区 -->
         <main class="content-area">
+
+            <!-- 🎯 虚拟 TDK 明文区 (建站复制专用) -->
+            <div class="admin-seo-panel">
+                <div class="admin-seo-item">
+                    <div class="admin-seo-label">SEO Title <span class="char-count">Target: 50-60 chars</span></div>
+                    <div class="copy-box">Wholesale Luxury Barware & Custom Crystal Stemware</div>
+                </div>
+                <div class="admin-seo-item">
+                    <div class="admin-seo-label">SEO Description <span class="char-count">Target: 150-160 chars</span></div>
+                    <div class="copy-box">Source premium wholesale luxury barware, custom crystal stemware, and heavy-base whiskey glasses direct from the manufacturer. FDA compliant, OEM/ODM ready.</div>
+                </div>
+                <div class="admin-seo-item">
+                    <div class="admin-seo-label">Target URL Slug <span class="char-count">Lowercase & Hyphens</span></div>
+                    <div class="copy-box url-box">products/luxury-barware/index.html</div>
+                </div>
+            </div>
             
-            <!-- [占位符] SEO/GEO 文案区 -->
+            <!-- 🎯 前端可见：SEO/GEO 黄金前五秒文案区 -->
             <div class="seo-description-block">
-                <h1>[H1] Enter the Sub-Category Main Keyword Here</h1>
+                <h1>Wholesale Luxury Barware & Custom Crystal Stemware</h1>
                 <p>
-                    <strong>[GEO Intro]</strong> Write a 50-word direct answer explaining what this product category is and its B2B value proposition. This is the "Golden First 5 Seconds" designed for Google AI Overviews.
+                    <strong>[B2B Quick Answer]</strong> Ruixin Glassware manufactures premium B2B luxury barware, including hand-cut cased crystal, gold-rimmed stemware, and heavy-base whiskey glasses. We provide turnkey OEM/ODM customization, FDA-compliant lead-free materials, and secure anti-breakage global shipping for hospitality brands and corporate gifting.
                 </p>
-                <p>
-                    <strong>[B2B Selling Points]</strong> Mention MOQ (e.g., starts at 1000pcs), customization options (OEM/ODM, laser engraving, decal), safety standards (FDA/LFGB compliant lead-free crystal), and packaging solutions.
-                </p>
+                <h2>Why Source Premium Barware from Ruixin?</h2>
+                <ul>
+                    <li><strong>Advanced Craftsmanship:</strong> Specializing in real gold plating, Edo Kiriko hand-cutting, and internal electroplating.</li>
+                    <li><strong>Flexible Customization:</strong> Low MOQ starting from 1,000pcs with full support for laser engraving and custom molds.</li>
+                    <li><strong>Zero Breakage Logistics:</strong> Reinforced 5-ply export cartons and drop-test certified gift boxes for 100% safe transit.</li>
+                </ul>
             </div>
 
-            <!-- [占位符] 产品阵列区 -->
+            <!-- 🎯 分类页专属：子分类引流卡片阵列 -->
+            <h2 style="margin: 40px 0 20px; font-size: 22px; color: var(--primary-dark); border-bottom: 2px solid var(--border-light); padding-bottom: 10px;">Explore by Drinkware Type</h2>
+            
             <div class="product-grid">
                 
-                <!-- 卡片 1 (模板) -->
-                <a href="placeholder-product-page.html" class="product-card">
-                    <div class="card-img-placeholder">[Product Image 800x800]</div>
+                <!-- 子分类 1.1 -->
+                <a href="stemware-goblets.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF445/2602/23/products/e000f910af.jpg');"></div>
                     <div class="card-info">
-                        <span class="card-sku">SKU: RX-SAMPLE-001</span>
-                        <h3 class="card-title">Insert Exact Product Name from CSV Here</h3>
-                        <span class="card-btn">View Details / Inquire</span>
+                        <span class="card-sku">Category 1.1</span>
+                        <h3 class="card-title">Stemware & Goblets</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Gold rim flutes, wine glasses, and ultra-thin custom crystal stemware.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
                     </div>
                 </a>
 
-                <!-- 卡片 2 (模板) -->
-                <a href="placeholder-product-page.html" class="product-card">
-                    <div class="card-img-placeholder">[Product Image 800x800]</div>
+                <!-- 子分类 1.2 -->
+                <a href="whiskey-rocks.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF445/2602/23/products/3089e674e6.jpg');"></div>
                     <div class="card-info">
-                        <span class="card-sku">SKU: RX-SAMPLE-002</span>
-                        <h3 class="card-title">Insert Exact Product Name from CSV Here</h3>
-                        <span class="card-btn">View Details / Inquire</span>
+                        <span class="card-sku">Category 1.2</span>
+                        <h3 class="card-title">Whiskey & Rocks Glasses</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Heavy-base tumblers, cased crystal, and etched old-fashioned glasses.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
                     </div>
                 </a>
-                
-                <!-- 您可以在此处无限复制上面的 <a class="product-card">...</a> 来填充产品 -->
+
+                <!-- 子分类 1.3 -->
+                <a href="craft-beer-pints.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF445/2602/23/products/e73c562445.jpg');"></div>
+                    <div class="card-info">
+                        <span class="card-sku">Category 1.3</span>
+                        <h3 class="card-title">Craft Beer Pints & Steins</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Matte black electroplated pints, nonic glasses, and brewery drinkware.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
+                    </div>
+                </a>
+
+                <!-- 子分类 1.4 -->
+                <a href="shot-tasting.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF445/2602/23/products/b13809a19a.jpg');"></div>
+                    <div class="card-info">
+                        <span class="card-sku">Category 1.4</span>
+                        <h3 class="card-title">Shot & Tasting Glasses</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Embossed vintage tasters, tequila shot glasses, and snifters.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
+                    </div>
+                </a>
+
+                <!-- 子分类 1.5 -->
+                <a href="decanters-novelty.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF445/2602/23/products/4e7d9b5d39.jpg');"></div>
+                    <div class="card-info">
+                        <span class="card-sku">Category 1.5</span>
+                        <h3 class="card-title">Decanters & Fantasy Sets</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Bedside carafes, Viking dragon claw goblets, and novelty barware.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
+                    </div>
+                </a>
+
+                <!-- 子分类 1.6 -->
+                <a href="sports-embedded.html" class="product-card">
+                    <div class="card-img-placeholder" style="background-color: #1E293B; color: #B78C43; font-weight: bold; font-size: 14px;">[ ⛳ SPORTS NOVELTY ]</div>
+                    <div class="card-info">
+                        <span class="card-sku">Category 1.6 / Viral</span>
+                        <h3 class="card-title">Embedded Sports Novelty</h3>
+                        <p style="font-size:12px; color:#64748B; margin:0 0 15px 0;">Hyper-realistic embedded golf balls and footballs in 16oz pint glasses.</p>
+                        <span class="card-btn">Browse Collection ➔</span>
+                    </div>
+                </a>
 
             </div>
         </main>
